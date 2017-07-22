@@ -1,9 +1,24 @@
-//
-//  Data.swift
-//  Subitizations
-//
-//  Created by Andrew Fenner on 7/15/17.
-//  Copyright © 2017 Andrew Fenner. All rights reserved.
-//
+// For the temporary storage and manipulation of Core Data
+
 
 import Foundation
+
+
+struct Player {
+    
+    static var name: String!
+    static var level: Int!
+    
+}
+
+
+
+struct Data {
+    
+    
+    static var Players: [String]!
+    
+ 
+    
+}
+
