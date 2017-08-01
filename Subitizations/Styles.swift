@@ -35,12 +35,61 @@ extension UIButton {
     
 }
 
+
+
+
+
+
+
 // Extensions to CGRect take the container and style it according to the object it's being assigned to. Ex: foo.frame.StyleFoo styles the frame of foo.
 
 extension CGRect {
     
     
-    mutating func styleBackGround(container: CGRect) {
+    mutating func styleScoreLabel(container: CGRect)
+    {
+        
+        let h = container.height/7
+        let w = 0.8*container.width
+        
+        let y = h
+        let x = container.width/2 - w/2
+        
+        self = CGRect(x: x, y: y, width: w, height: h)
+    
+    }
+    
+    
+    mutating func styleTimerLabel(container: CGRect) {
+        
+        
+        let w = container.width/20
+        let h = w
+        
+        let x = container.width - 1.5*w
+        let y = 0.5*w
+        
+        
+        self = CGRect(x: x, y: y, width: w, height: h)
+        
+    }
+    
+    mutating func styleCenterButton(container: CGRect) {
+        
+
+        let w = container.width/7
+        let h = w/4
+        
+        let x = container.width/2 - w/2
+        let y = container.height - container.width/4
+        
+        
+        self = CGRect(x: x, y: y, width: w, height: h)
+        
+    }
+
+
+    mutating func styleFillContainer(container: CGRect) {
         
         let x: CGFloat = 0
         let y: CGFloat = 0

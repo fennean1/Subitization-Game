@@ -18,6 +18,7 @@ func cosine(arg: Double)-> CGFloat {
     
 }
 
+
 // Give the ballsize as a function of the frame. Optimally set to an eighth of the width
 func ballsize(frame: CGSize) -> CGSize {
     
@@ -29,11 +30,16 @@ func ballsize(frame: CGSize) -> CGSize {
 }
 
 
+// Frame used for initialization when () constructor needs an arguement
+let DefaultFrame = CGRect(x: 0, y: 0, width: 10, height: 10)
+
+
 // For convenience invoking common trig ratios.
 let COS30 = cosine(arg: Double.pi/6)
 let COS45 = cosine(arg: Double.pi/4)
 
 
+let ChalkBoardFont = UIFont(name: "Chalkboard SE", size: 20)
 
 // This file contains functions, constants and extensions designed for convenience.
 
@@ -43,6 +49,11 @@ let GreenBall = UIImage(named: "GreenBall")!
 let OrangeBall = UIImage(named: "OrangeBall")!
 let RedBall = UIImage(named: "RedBall")!
 let PurpleBall = UIImage(named: "PurpleBall")!
+let SquareButton = UIImage(named: "SquareButton")!
+let PinkButton = UIImage(named: "PinkButton")!
+let WhiteButton = UIImage(named: "WhiteButton")!
+let GlassButton = UIImage(named: "GlassBall")!
+
 
 // Colors & Fonts
 let backcolor = UIColor.white.withAlphaComponent(0.5)
@@ -265,5 +276,10 @@ func removeDuplicateNodes(nodes: [CGPoint]) -> [CGPoint] {
     
 }
 
+func hide(view: UIView)
+{
+    UIView.animate(withDuration: 0.5 , animations: {view.center = CGPoint(x: -100,y: -100)})
+    
+}
 
 

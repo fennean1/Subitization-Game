@@ -19,6 +19,12 @@
 		1C86D3931F230D2800CD1328 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D3921F230D2700CD1328 /* Data.swift */; };
 		1C86D3951F230E5400CD1328 /* ResponseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D3941F230E5400CD1328 /* ResponseButton.swift */; };
 		1C86D3971F23D30800CD1328 /* Numbershape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D3961F23D30800CD1328 /* Numbershape.swift */; };
+		1C86D3991F255BB800CD1328 /* SquareButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3981F255BB800CD1328 /* SquareButton.png */; };
+		1C86D3C61F282F2500CD1328 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D3C51F282F2500CD1328 /* Levels.swift */; };
+		1C86D3C81F29172300CD1328 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D3C71F29172300CD1328 /* State.swift */; };
+		1C86D3CA1F2922D400CD1328 /* PinkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3C91F2922D400CD1328 /* PinkButton.png */; };
+		1C86D3CC1F2C76A600CD1328 /* WhiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */; };
+		1C86D3CE1F2C7A1C00CD1328 /* GlassBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3CD1F2C7A1C00CD1328 /* GlassBall.png */; };
 		1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947731F17BA0400B62F31 /* TableViewCell.swift */; };
 		1CF947761F17BA3600B62F31 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947751F17BA3600B62F31 /* Init.swift */; };
 		1CF947781F17F58700B62F31 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947771F17F58700B62F31 /* Model.swift */; };
@@ -70,6 +76,12 @@
 		1C86D3921F230D2700CD1328 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		1C86D3941F230E5400CD1328 /* ResponseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseButton.swift; sourceTree = "<group>"; };
 		1C86D3961F23D30800CD1328 /* Numbershape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbershape.swift; sourceTree = "<group>"; };
+		1C86D3981F255BB800CD1328 /* SquareButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquareButton.png; sourceTree = SOURCE_ROOT; };
+		1C86D3C51F282F2500CD1328 /* Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
+		1C86D3C71F29172300CD1328 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		1C86D3C91F2922D400CD1328 /* PinkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkButton.png; sourceTree = "<group>"; };
+		1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteButton.png; sourceTree = SOURCE_ROOT; };
+		1C86D3CD1F2C7A1C00CD1328 /* GlassBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GlassBall.png; sourceTree = "<group>"; };
 		1CF947731F17BA0400B62F31 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1CF947751F17BA3600B62F31 /* Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		1CF947771F17F58700B62F31 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -191,7 +203,9 @@
 				1CF947801F19A18900B62F31 /* Styles.swift */,
 				1CF947751F17BA3600B62F31 /* Init.swift */,
 				1CF947771F17F58700B62F31 /* Model.swift */,
+				1C86D3C51F282F2500CD1328 /* Levels.swift */,
 				1C01F26D1F16E88D0035621A /* Convenience.swift */,
+				1C86D3C71F29172300CD1328 /* State.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -208,7 +222,11 @@
 		1CF9477B1F1828C700B62F31 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */,
+				1C86D3981F255BB800CD1328 /* SquareButton.png */,
 				1CF947821F19A49700B62F31 /* BlueBall.png */,
+				1C86D3CD1F2C7A1C00CD1328 /* GlassBall.png */,
+				1C86D3C91F2922D400CD1328 /* PinkButton.png */,
 				1CF947831F19A49700B62F31 /* OrangeBall.png */,
 				1CF947841F19A49700B62F31 /* PurpleBall.png */,
 				1CF947851F19A49700B62F31 /* RedBall.png */,
@@ -332,12 +350,16 @@
 				1CF947881F19A49700B62F31 /* PurpleBall.png in Resources */,
 				1CF947871F19A49700B62F31 /* OrangeBall.png in Resources */,
 				1CF947891F19A49700B62F31 /* RedBall.png in Resources */,
+				1C86D3CA1F2922D400CD1328 /* PinkButton.png in Resources */,
+				1C86D3991F255BB800CD1328 /* SquareButton.png in Resources */,
 				1CF9477D1F1910A600B62F31 /* GreenBall.png in Resources */,
 				1CF9477A1F1828C000B62F31 /* PinkBall.png in Resources */,
 				1C01F2481F16E68A0035621A /* LaunchScreen.storyboard in Resources */,
 				1C01F2451F16E68A0035621A /* Assets.xcassets in Resources */,
 				1C01F2401F16E68A0035621A /* Main.storyboard in Resources */,
 				1CF947861F19A49700B62F31 /* BlueBall.png in Resources */,
+				1C86D3CE1F2C7A1C00CD1328 /* GlassBall.png in Resources */,
+				1C86D3CC1F2C76A600CD1328 /* WhiteButton.png in Resources */,
 				1CF9477F1F19A17B00B62F31 /* Clouds.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,8 +393,10 @@
 				1C86D3931F230D2800CD1328 /* Data.swift in Sources */,
 				1CF947761F17BA3600B62F31 /* Init.swift in Sources */,
 				1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */,
+				1C86D3C81F29172300CD1328 /* State.swift in Sources */,
 				1CF947A31F1A7E9C00B62F31 /* Data.xcdatamodeld in Sources */,
 				1C01F23D1F16E68A0035621A /* PlayViewController.swift in Sources */,
+				1C86D3C61F282F2500CD1328 /* Levels.swift in Sources */,
 				1C01F23B1F16E68A0035621A /* AppDelegate.swift in Sources */,
 				1CF9478B1F19AA8100B62F31 /* LoginViewController.swift in Sources */,
 				1CF947781F17F58700B62F31 /* Model.swift in Sources */,

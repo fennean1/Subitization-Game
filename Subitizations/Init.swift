@@ -13,17 +13,6 @@ import Foundation
 import UIKit
 
 
-func getConfigurationFrame(frame: CGRect) -> CGRect
-{
-    
-    let h = frame.height*0.8
-    let w = h
-    let x = frame.width/2 - w/2
-    let y = frame.height/2 - h/2
-    
-    return CGRect(x: x, y: y, width: w, height: h)
-    
-}
 
 func initConfigurationNodes(frame: CGRect) -> [CGPoint]
 {
@@ -48,19 +37,117 @@ func initConfigurationNodes(frame: CGRect) -> [CGPoint]
     
 }
 
+func initArray(size: Int,object: AnyObject) -> [AnyObject]
+{
+    var returnArray: [AnyObject] = []
+
+    
+    for _ in 1...size {
+    
+    let newElement: AnyClass = type(of: object)
+ 
+    returnArray.append(newElement)
+        
+    }
+    
+    return returnArray
+    
+}
+
+func initResponseButtons(container: CGRect) {
+    
+    
+    for _ in 1...10
+    {
+        
+        let newButton = responsebutton(frame: container)
+        
+        ResponseButtons.append(newButton)
+        
+    }
+    
+    
+}
+
+
+func initTimerLabel(container: CGRect)
+{
+    
+    TimerLabel = UILabel()
+    
+    TimerLabel.frame.styleTimerLabel(container: container)
+    TimerLabel.font = UIFont(name: "ChalkBoard SE", size: 20)
+    TimerLabel.textAlignment = .center
+        
+}
+
+
+func initScoreLabel(container: CGRect)
+{
+    
+    ScoreLabel = UILabel()
+    
+    ScoreLabel.frame.styleScoreLabel(container: container)
+    ScoreLabel.font = UIFont(name: "ChalkBoard SE", size: 70)
+    ScoreLabel.textAlignment = .center
+    
+   
+}
+
+func initStartButton(container: CGRect)
+{
+    StartButton = UIButton()
+    
+    StartButton.frame.styleCenterButton(container: container)
+
+    let fontSize = StartButton.frame.height*0.7
+    
+    StartButton.setBackgroundImage(PinkButton, for: .normal)
+    
+    StartButton.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: fontSize)
+    
+    StartButton.setTitle("Start", for: .normal)
+    
+    StartButton.setTitleColor(UIColor.white, for: .normal)
+    
+    
+    
+}
+
+
+func initNextButton(container: CGRect)
+{
+    NextButton = UIButton()
+    
+    NextButton.frame.styleCenterButton(container: container)
+    
+    let fontSize = StartButton.frame.height*0.7
+    
+    NextButton.setBackgroundImage(PinkButton, for: .normal)
+    
+    NextButton.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: fontSize)
+    
+    NextButton.setTitle("Next", for: .normal)
+    
+    NextButton.setTitleColor(UIColor.white, for: .normal)
+    
+    hide(view: NextButton)
+    
+}
+
 
 // Initializes the marble array
 func initMarbles(n: Int) {
     
     
-    for _ in 0...n-1
+    for _ in 1...n
     {
         
-        let newImage = UIImageView()
+        let newMarble = marble(frame: DefaultFrame)
         
-        newImage.frame.size = CGSize(width: 2*R, height: 2*R)
+        newMarble.frame.size = CGSize(width: BallSize, height: BallSize)
         
-        Marbles.append(newImage)
+        Marbles.append(newMarble)
         
     }
     

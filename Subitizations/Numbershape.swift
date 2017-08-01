@@ -10,42 +10,51 @@ import Foundation
 import UIKit
 
 
-func drawNumberShape(value: Int,at: CGPoint,side: CGFloat,balls: [UIImageView],ballimage: UIImage) {
+func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: UIImage, marblesize: CGFloat) {
     
 
     
     // We're not going to deal with anything where the balls array is not size ten and the number we're drawing is greater than ten. If we want to draw numbershapes with values greater than 10 we need nesting
-    guard value <= 10, balls.count == 10 else {
+    guard value <= 10, marbles.count == 10 else {
 
+        
+        
+        print("The size of your array must be 10 and the value you draw must be less than or equal to ten. Your array is ",marbles.count,"and your value is",value)
         
         return
         
     }
     
-    var points = decompose(a: value, side: side)
+    var points = decompose(a: value, side: marblesize)
+    
+    let sizeOfShape = _getShapeSize(points: points, r: marblesize/2)
+    
+    let shapeOffset = CGPoint(x: sizeOfShape.width/2, y: sizeOfShape.height/2)
+    
+    let combinedOffset = subtractPoints(a: at, b: shapeOffset)
     
 
-    
     points = points.map({C in addPoints(a: C, b: at)})
-    
 
-    
-    for (index,ball) in balls.enumerated() {
+
+    for (index,ball) in marbles.enumerated() {
         
         var drawBall: Bool {return index < value}
         
- 
         
         if drawBall {
             
+    
             ball.isHidden = false
             
-            ball.frame.size = CGSize(width: side, height: side)
+            ball.frame.size = CGSize(width: marblesize, height: marblesize)
             
-            ball.image = ballimage
+            
+            print("Setting Ball image to",ballimage)
+            ball.image = CurrentCounter
+            
             
             UIView.animate(withDuration: 0.5, animations: {
-                
       
                 ball.center = points[index]
                 
@@ -66,14 +75,12 @@ func drawNumberShape(value: Int,at: CGPoint,side: CGFloat,balls: [UIImageView],b
 }
 
 
-// get the coordinates for placing a number inside of the square view.
-func decompose(a: Int,side: CGFloat) -> [CGPoint]
+// Get the coordinates for placing a number inside of the square view.
+func decompose(a: Int, side: CGFloat) -> [CGPoint]
 {
     
-
-    let ballDim = side // Or height, either way cause it's a square
     
-    let ballSize = CGSize(width: ballDim, height: ballDim)
+    let ballSize = CGSize(width: side, height: side)
     
     // Size of number a
 
@@ -81,16 +88,13 @@ func decompose(a: Int,side: CGFloat) -> [CGPoint]
     // Set of points for number 'a'
     let ap = numbershapeXY(a: a, frame: ballSize)
     
-    // let aSize = getShapeSize(a: a, ballsize: ballDim)
+    let aSize = _getShapeSize(points: ap, r: side/2)
     
-    let aSize = _getShapeSize(points: ap, r: ballDim/2)
-    
-
-    
+    // Numbershape coordinates are created with origin on the upper left. To center the entire shape around this origin we need to apply an offset equal to half the shapes height and width.
     let offSet = CGPoint(x: aSize.width/2, y: aSize.height/2)
     
     
-    // Adjusted points for number 'a'
+    // Apply offset
     let adjap = ap.flatMap({C in subtractPoints(a: C, b: offSet)})
 
     

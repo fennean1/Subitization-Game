@@ -10,22 +10,42 @@ import Foundation
 import UIKit
 
 
+// Only for testing purposes.
+var Toggler = 0
 
-var R: CGFloat = 20
 
-var BallSize: CGFloat = 40
+// Size of the ball
+var BallSize: CGFloat = 50
 
 var BackGround = UIImageView()
 
-var Marbles: [UIImageView] = []
 
+// Array of marbles that get displayed during the game
+var Marbles: [marble] = []
+
+// The array of points that represent the marble centers
 var MarbleCenters: [CGPoint] = []
 
-var CurrentCounter = BlueBall
+var CurrentCounter = PinkBall
 
-var Toggler = 0
+// The number being presented.
+var Argument = 0
 
-var Number = 0
-
+// Game Timer
 var Time: Double = 0
+
+var TimeElapsed: Double = 0
+
+// Array of buttons that receive the user's responses to the question
+var ResponseButtons: [responsebutton] = []
+
+// A struct that stores the levels.
+var Levels = levels()
+
+var Countdown: Float = 60
+
+var NumberOfButtons = 8
+
+var Score: CGFloat = 0
+
 
