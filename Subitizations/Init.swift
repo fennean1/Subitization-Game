@@ -69,6 +69,23 @@ func initResponseButtons(container: CGRect) {
     
 }
 
+func initTrophyButtons(container: CGRect) {
+    
+    
+    for index in 0...9
+    {
+        
+        let newButton = trophybutton()
+        
+        newButton.level = index
+        
+        TrophyButtons.append(newButton)
+        
+    }
+    
+    
+}
+
 
 func initTimerLabel(container: CGRect)
 {
@@ -90,8 +107,7 @@ func initScoreLabel(container: CGRect)
     ScoreLabel.frame.styleScoreLabel(container: container)
     ScoreLabel.font = UIFont(name: "ChalkBoard SE", size: 70)
     ScoreLabel.textAlignment = .center
-    
-   
+
 }
 
 func initStartButton(container: CGRect)
@@ -120,6 +136,8 @@ func initNextButton(container: CGRect)
     NextButton = UIButton()
     
     NextButton.frame.styleCenterButton(container: container)
+
+    NextButton.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     let fontSize = StartButton.frame.height*0.7
     
@@ -131,7 +149,7 @@ func initNextButton(container: CGRect)
     
     NextButton.setTitleColor(UIColor.white, for: .normal)
     
-    hide(view: NextButton)
+    
     
 }
 
@@ -153,3 +171,71 @@ func initMarbles(n: Int) {
     
     
 }
+
+
+
+
+func initLevels() -> [Level] {
+    
+    var LevelTest: Level {
+        
+        var initLevel = Level()
+        
+        initLevel.index = 0
+        
+        initLevel.problemSet = [1,2,3,4,5,6,7,8,9,10]
+        
+        return initLevel
+    }
+    
+    var LevelOne: Level {
+        
+        var initLevel = Level()
+        
+        initLevel.index = 0
+        
+        initLevel.problemSet = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
+        
+        
+        return initLevel
+    }
+    
+    var LevelTwo: Level {
+        
+        var initLevel = Level()
+        
+        initLevel.index = 1
+        
+        initLevel.problemSet = [1,2,3,4,5,2,3,4,5,3,4,5,1]
+        
+        return initLevel
+        
+    }
+    
+    var LevelThree: Level {
+        
+        var initLevel = Level()
+        
+        initLevel.index = 2
+        
+        initLevel.problemSet = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10]
+        
+        return initLevel
+    }
+    
+    
+     return [LevelOne,LevelTwo,LevelThree]
+    
+    // let LevelZero = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5]
+    // let LevelOne = [1,1,1,3,3,3,5,5,5,7,7,7,9,9,9]
+    // let LevelTwo = [2,2,2,4,4,4,6,6,6,8,8,8,10,10,10]
+    // let LevelThree = [3,3,3,4,4,4,5,5,5,6,6,6,7,7,7]
+    // let LevelFour = [4,4,4,5,5,5,6,6,6,7,7,7,8,8,8]
+    // let LevelFive = [5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,]
+    // let LevelSix = [6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
+    // let LevelSeven = [7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10]
+    
+    
+}
+
+

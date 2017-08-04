@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 
 
-
-
-
-
 class responsebutton: UIButton {
     
     // Number of balls drawn in this button
@@ -22,9 +18,6 @@ class responsebutton: UIButton {
     var marbleViewArray: [UIImageView] = []
     
     func drawNumber(n: Int) {
-    
-        print("marble view array  count",marbleViewArray.count)
-    
    
         _n = n
         
@@ -71,34 +64,4 @@ class responsebutton: UIButton {
     
 }
 
-
-
-func getResponseButtonFrames(n: Int,container: CGRect) -> [CGRect]
-{
-    
-    var frames: [CGRect] = []
-    
-    let side: CGFloat = container.width/12
-    
-    let length = side*CGFloat(n)*1.2
-    
-    let startX = container.width/2 - length/2
-    
-    for index in 0...n-1 {
-        
-   
-        let x = 10 + startX + side*CGFloat(index)*1.2
-        let y = container.height - 1.5*side
-        
-        let w = side
-        let h = side
-        
-        frames.append(CGRect(x: x, y: y, width: w, height: h))
-        
-        
-    }
-    
-    return frames
-    
-}
 

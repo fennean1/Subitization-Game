@@ -49,8 +49,6 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
             
             ball.frame.size = CGSize(width: marblesize, height: marblesize)
             
-            
-            print("Setting Ball image to",ballimage)
             ball.image = CurrentCounter
             
             

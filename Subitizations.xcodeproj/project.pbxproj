@@ -25,6 +25,19 @@
 		1C86D3CA1F2922D400CD1328 /* PinkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3C91F2922D400CD1328 /* PinkButton.png */; };
 		1C86D3CC1F2C76A600CD1328 /* WhiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */; };
 		1C86D3CE1F2C7A1C00CD1328 /* GlassBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3CD1F2C7A1C00CD1328 /* GlassBall.png */; };
+		1C86D4061F31137B00CD1328 /* RainbowTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3FB1F31137B00CD1328 /* RainbowTrophy.png */; };
+		1C86D4071F31137B00CD1328 /* Avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3FC1F31137B00CD1328 /* Avatar.png */; };
+		1C86D4081F31137B00CD1328 /* LittleBlueTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3FD1F31137B00CD1328 /* LittleBlueTrophy.png */; };
+		1C86D4091F31137B00CD1328 /* LittleGreenTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3FE1F31137B00CD1328 /* LittleGreenTrophy.png */; };
+		1C86D40A1F31137B00CD1328 /* MedBronzeTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D3FF1F31137B00CD1328 /* MedBronzeTrophy.png */; };
+		1C86D40B1F31137B00CD1328 /* BigSilverTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4001F31137B00CD1328 /* BigSilverTrophy.png */; };
+		1C86D40C1F31137B00CD1328 /* BigGoldTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4011F31137B00CD1328 /* BigGoldTrophy.png */; };
+		1C86D40D1F31137B00CD1328 /* EmptyTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4021F31137B00CD1328 /* EmptyTrophy.png */; };
+		1C86D40E1F31137B00CD1328 /* GoldTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4031F31137B00CD1328 /* GoldTrophy.png */; };
+		1C86D40F1F31137B00CD1328 /* BronzeTrophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4041F31137B00CD1328 /* BronzeTrophy.png */; };
+		1C86D4101F31137B00CD1328 /* BareColumn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4051F31137B00CD1328 /* BareColumn.png */; };
+		1C86D4121F311DCD00CD1328 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D4111F311DCD00CD1328 /* Library.swift */; };
+		1C86D4141F32338B00CD1328 /* TrophyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D4131F32338B00CD1328 /* TrophyButton.swift */; };
 		1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947731F17BA0400B62F31 /* TableViewCell.swift */; };
 		1CF947761F17BA3600B62F31 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947751F17BA3600B62F31 /* Init.swift */; };
 		1CF947781F17F58700B62F31 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947771F17F58700B62F31 /* Model.swift */; };
@@ -82,6 +95,19 @@
 		1C86D3C91F2922D400CD1328 /* PinkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkButton.png; sourceTree = "<group>"; };
 		1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteButton.png; sourceTree = SOURCE_ROOT; };
 		1C86D3CD1F2C7A1C00CD1328 /* GlassBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GlassBall.png; sourceTree = "<group>"; };
+		1C86D3FB1F31137B00CD1328 /* RainbowTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RainbowTrophy.png; sourceTree = "<group>"; };
+		1C86D3FC1F31137B00CD1328 /* Avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Avatar.png; sourceTree = "<group>"; };
+		1C86D3FD1F31137B00CD1328 /* LittleBlueTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LittleBlueTrophy.png; sourceTree = "<group>"; };
+		1C86D3FE1F31137B00CD1328 /* LittleGreenTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LittleGreenTrophy.png; sourceTree = "<group>"; };
+		1C86D3FF1F31137B00CD1328 /* MedBronzeTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MedBronzeTrophy.png; sourceTree = "<group>"; };
+		1C86D4001F31137B00CD1328 /* BigSilverTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigSilverTrophy.png; sourceTree = "<group>"; };
+		1C86D4011F31137B00CD1328 /* BigGoldTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigGoldTrophy.png; sourceTree = "<group>"; };
+		1C86D4021F31137B00CD1328 /* EmptyTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyTrophy.png; sourceTree = "<group>"; };
+		1C86D4031F31137B00CD1328 /* GoldTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoldTrophy.png; sourceTree = "<group>"; };
+		1C86D4041F31137B00CD1328 /* BronzeTrophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BronzeTrophy.png; sourceTree = "<group>"; };
+		1C86D4051F31137B00CD1328 /* BareColumn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BareColumn.png; sourceTree = "<group>"; };
+		1C86D4111F311DCD00CD1328 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		1C86D4131F32338B00CD1328 /* TrophyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophyButton.swift; sourceTree = "<group>"; };
 		1CF947731F17BA0400B62F31 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1CF947751F17BA3600B62F31 /* Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		1CF947771F17F58700B62F31 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -191,6 +217,7 @@
 			children = (
 				1C01F23C1F16E68A0035621A /* PlayViewController.swift */,
 				1C86D3941F230E5400CD1328 /* ResponseButton.swift */,
+				1C86D4131F32338B00CD1328 /* TrophyButton.swift */,
 				1C86D3961F23D30800CD1328 /* Numbershape.swift */,
 				1C01F26B1F16E6B30035621A /* Configurations.swift */,
 			);
@@ -204,6 +231,7 @@
 				1CF947751F17BA3600B62F31 /* Init.swift */,
 				1CF947771F17F58700B62F31 /* Model.swift */,
 				1C86D3C51F282F2500CD1328 /* Levels.swift */,
+				1C86D4111F311DCD00CD1328 /* Library.swift */,
 				1C01F26D1F16E88D0035621A /* Convenience.swift */,
 				1C86D3C71F29172300CD1328 /* State.swift */,
 			);
@@ -222,6 +250,17 @@
 		1CF9477B1F1828C700B62F31 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1C86D3FB1F31137B00CD1328 /* RainbowTrophy.png */,
+				1C86D3FC1F31137B00CD1328 /* Avatar.png */,
+				1C86D3FD1F31137B00CD1328 /* LittleBlueTrophy.png */,
+				1C86D3FE1F31137B00CD1328 /* LittleGreenTrophy.png */,
+				1C86D3FF1F31137B00CD1328 /* MedBronzeTrophy.png */,
+				1C86D4001F31137B00CD1328 /* BigSilverTrophy.png */,
+				1C86D4011F31137B00CD1328 /* BigGoldTrophy.png */,
+				1C86D4021F31137B00CD1328 /* EmptyTrophy.png */,
+				1C86D4031F31137B00CD1328 /* GoldTrophy.png */,
+				1C86D4041F31137B00CD1328 /* BronzeTrophy.png */,
+				1C86D4051F31137B00CD1328 /* BareColumn.png */,
 				1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */,
 				1C86D3981F255BB800CD1328 /* SquareButton.png */,
 				1CF947821F19A49700B62F31 /* BlueBall.png */,
@@ -350,14 +389,25 @@
 				1CF947881F19A49700B62F31 /* PurpleBall.png in Resources */,
 				1CF947871F19A49700B62F31 /* OrangeBall.png in Resources */,
 				1CF947891F19A49700B62F31 /* RedBall.png in Resources */,
+				1C86D40C1F31137B00CD1328 /* BigGoldTrophy.png in Resources */,
 				1C86D3CA1F2922D400CD1328 /* PinkButton.png in Resources */,
 				1C86D3991F255BB800CD1328 /* SquareButton.png in Resources */,
+				1C86D4091F31137B00CD1328 /* LittleGreenTrophy.png in Resources */,
 				1CF9477D1F1910A600B62F31 /* GreenBall.png in Resources */,
+				1C86D40B1F31137B00CD1328 /* BigSilverTrophy.png in Resources */,
+				1C86D4081F31137B00CD1328 /* LittleBlueTrophy.png in Resources */,
 				1CF9477A1F1828C000B62F31 /* PinkBall.png in Resources */,
+				1C86D40D1F31137B00CD1328 /* EmptyTrophy.png in Resources */,
+				1C86D4061F31137B00CD1328 /* RainbowTrophy.png in Resources */,
 				1C01F2481F16E68A0035621A /* LaunchScreen.storyboard in Resources */,
+				1C86D40A1F31137B00CD1328 /* MedBronzeTrophy.png in Resources */,
+				1C86D40E1F31137B00CD1328 /* GoldTrophy.png in Resources */,
 				1C01F2451F16E68A0035621A /* Assets.xcassets in Resources */,
+				1C86D40F1F31137B00CD1328 /* BronzeTrophy.png in Resources */,
 				1C01F2401F16E68A0035621A /* Main.storyboard in Resources */,
+				1C86D4101F31137B00CD1328 /* BareColumn.png in Resources */,
 				1CF947861F19A49700B62F31 /* BlueBall.png in Resources */,
+				1C86D4071F31137B00CD1328 /* Avatar.png in Resources */,
 				1C86D3CE1F2C7A1C00CD1328 /* GlassBall.png in Resources */,
 				1C86D3CC1F2C76A600CD1328 /* WhiteButton.png in Resources */,
 				1CF9477F1F19A17B00B62F31 /* Clouds.png in Resources */,
@@ -386,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CF947811F19A18900B62F31 /* Styles.swift in Sources */,
+				1C86D4141F32338B00CD1328 /* TrophyButton.swift in Sources */,
 				1C01F26C1F16E6B30035621A /* Configurations.swift in Sources */,
 				1C86D3971F23D30800CD1328 /* Numbershape.swift in Sources */,
 				1C86D3951F230E5400CD1328 /* ResponseButton.swift in Sources */,
@@ -398,6 +449,7 @@
 				1C01F23D1F16E68A0035621A /* PlayViewController.swift in Sources */,
 				1C86D3C61F282F2500CD1328 /* Levels.swift in Sources */,
 				1C01F23B1F16E68A0035621A /* AppDelegate.swift in Sources */,
+				1C86D4121F311DCD00CD1328 /* Library.swift in Sources */,
 				1CF9478B1F19AA8100B62F31 /* LoginViewController.swift in Sources */,
 				1CF947781F17F58700B62F31 /* Model.swift in Sources */,
 			);
@@ -495,7 +547,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -540,7 +592,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -555,6 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U44FL526BD;
 				INFOPLIST_FILE = Subitizations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NumberShapes.Subitizations;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -568,6 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U44FL526BD;
 				INFOPLIST_FILE = Subitizations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NumberShapes.Subitizations;
 				PRODUCT_NAME = "$(TARGET_NAME)";

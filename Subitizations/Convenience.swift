@@ -18,6 +18,7 @@ func cosine(arg: Double)-> CGFloat {
     
 }
 
+let RectZero = CGRect(x: 0, y: 0, width: 0, height: 0)
 
 // Give the ballsize as a function of the frame. Optimally set to an eighth of the width
 func ballsize(frame: CGSize) -> CGSize {
@@ -53,6 +54,15 @@ let SquareButton = UIImage(named: "SquareButton")!
 let PinkButton = UIImage(named: "PinkButton")!
 let WhiteButton = UIImage(named: "WhiteButton")!
 let GlassButton = UIImage(named: "GlassBall")!
+
+
+let LittleBlueTrophy = UIImage(named: "LittleBlueTrophy")!
+let LittleGreenTrophy = UIImage(named: "LittleGreenTrophy")!
+let MedBronzeTrophy = UIImage(named: "MedBronzeTrophy")!
+let BigSilverTrophy = UIImage(named: "BigSilverTrophy")!
+let GoldTrophy = UIImage(named: "GoldTrophy")!
+let RainbowTrophy = UIImage(named: "RainbowTrophy")!
+let EmptyTrophy = UIImage(named: "EmptyTrophy")!
 
 
 // Colors & Fonts
@@ -154,7 +164,6 @@ func getOffsetForConfiguration(points: [CGPoint],r: CGFloat) -> CGPoint {
     return CGPoint(x: -offX, y: -offY)
     
 }
-
 
 
 // Calculates the minimum x value given a set a points.
@@ -281,5 +290,64 @@ func hide(view: UIView)
     UIView.animate(withDuration: 0.5 , animations: {view.center = CGPoint(x: -100,y: -100)})
     
 }
+
+
+func calculateScore(dT: CGFloat,number: Int,attempts: Int) -> Int {
+    
+    var score: CGFloat = 0
+    
+    score = 200/(sqrt(dT + 1 + CGFloat(attempts)))
+    
+    //var difficultyModifier = CGFloat(2 + number)
+    
+    //difficultyModifier = sqrt(difficultyModifier)
+    
+    //score = score*difficultyModifier
+    
+    return Int(score)
+    
+}
+
+
+func scalePoints(factor: CGFloat,vector: CGPoint) -> CGPoint {
+    
+    let x = factor*vector.x
+    let y = factor*vector.y
+    
+    return CGPoint(x: x, y: y)
+    
+}
+
+func bouncePoints(points: [CGPoint],center: CGPoint) -> [CGPoint] {
+    
+    var returnArr: [CGPoint] = []
+    
+    for point in points {
+        
+        let length = distance(A: point, B: center)
+        print(length,"This is the length")
+        let vector = subtractPoints(a: point, b: center)
+        print(vector,"This is the vector")
+        
+        let bounce: CGFloat = 40
+        
+        let direction = scalePoints(factor: bounce/(length+1),vector: vector)
+        
+        print(direction,"This is the diredction")
+        
+        let newPoint = addPoints(a: direction, b: point)
+        
+        returnArr.append(newPoint)
+
+        
+    }
+    
+    return returnArr
+    
+}
+
+
+
+
 
 

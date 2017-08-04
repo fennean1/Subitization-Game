@@ -13,8 +13,6 @@ var r: CGFloat!
 
 var centers: [CGPoint] = []
 
-var Objects: [marble] = []
-
 var ConfigurationNodes: [CGPoint] = []
 
 class marble: UIImageView

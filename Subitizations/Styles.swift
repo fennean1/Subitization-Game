@@ -125,5 +125,85 @@ extension CGRect {
         
     }
     
+
+    
+    mutating func styleHideTopLeft(hide: CGRect) {
+        
+        let h = hide.height
+        let w = hide.width
+        let y = -1.2*hide.height
+        let x = -1.2*hide.width
+        
+        self = CGRect(x: x, y: y, width: w, height: h)
+        
+        
+    }
+    
     
 }
+
+
+
+
+
+func getResponseButtonFrames(n: Int,container: CGRect) -> [CGRect]
+{
+    
+    var frames: [CGRect] = []
+    
+    let side: CGFloat = container.width/12
+    
+    let length = side*CGFloat(n)*1.2
+    
+    let startX = container.width/2 - length/2
+    
+    for index in 0...n-1 {
+        
+        
+        let x = 10 + startX + side*CGFloat(index)*1.2
+        let y = container.height - 1.5*side
+        
+        let w = side
+        let h = side
+        
+        frames.append(CGRect(x: x, y: y, width: w, height: h))
+        
+        
+    }
+    
+    return frames
+    
+}
+
+
+func getTrophyButtonFrames(n: Int,container: CGRect) -> [CGRect]
+{
+    
+    var frames: [CGRect] = []
+    
+    let spacing: CGFloat = container.width/12
+    
+    let side: CGFloat = container.width/25
+    
+    let startX = 10 + spacing/2 - side/2
+    
+    for index in 0...n-1 {
+        
+        
+        let x = startX + spacing*CGFloat(index)*1.2
+        let y = container.height - 4*side
+        
+        let w = side
+        let h = side
+        
+        frames.append(CGRect(x: x, y: y, width: w, height: h))
+        
+        
+    }
+    
+    return frames
+    
+}
+
+
+

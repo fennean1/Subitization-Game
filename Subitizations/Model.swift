@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 
 
-// Only for testing purposes.
-var Toggler = 0
-
+// Normalizes the score percentage
+let Normalizer: CGFloat = 200
 
 // Size of the ball
 var BallSize: CGFloat = 50
@@ -39,12 +38,12 @@ var TimeElapsed: Double = 0
 // Array of buttons that receive the user's responses to the question
 var ResponseButtons: [responsebutton] = []
 
-// A struct that stores the levels.
-var Levels = levels()
+var TrophyButtons: [trophybutton] = []
 
 var Countdown: Float = 60
 
-var NumberOfButtons = 8
+var NumberOfTrophies = 10
+var NumberOfButtons = 10
 
 var Score: CGFloat = 0
 
