@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C01F23B1F16E68A0035621A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01F23A1F16E68A0035621A /* AppDelegate.swift */; };
-		1C01F23D1F16E68A0035621A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01F23C1F16E68A0035621A /* PlayViewController.swift */; };
+		1C01F23D1F16E68A0035621A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C01F23C1F16E68A0035621A /* GameViewController.swift */; };
 		1C01F2401F16E68A0035621A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C01F23E1F16E68A0035621A /* Main.storyboard */; };
 		1C01F2451F16E68A0035621A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C01F2441F16E68A0035621A /* Assets.xcassets */; };
 		1C01F2481F16E68A0035621A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C01F2461F16E68A0035621A /* LaunchScreen.storyboard */; };
@@ -38,6 +38,22 @@
 		1C86D4101F31137B00CD1328 /* BareColumn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D4051F31137B00CD1328 /* BareColumn.png */; };
 		1C86D4121F311DCD00CD1328 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D4111F311DCD00CD1328 /* Library.swift */; };
 		1C86D4141F32338B00CD1328 /* TrophyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D4131F32338B00CD1328 /* TrophyButton.swift */; };
+		1C86D5391F428E8C00CD1328 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5381F428E8C00CD1328 /* WelcomeViewController.swift */; };
+		1C86D53C1F45602B00CD1328 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D53B1F45602B00CD1328 /* GridViewController.swift */; };
+		1C86D53E1F4560B900CD1328 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D53D1F4560B900CD1328 /* ColorPicker.swift */; };
+		1C86D5411F45645300CD1328 /* TouchableBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5401F45645300CD1328 /* TouchableBall.swift */; };
+		1C86D5431F45E14000CD1328 /* MarbleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5421F45E14000CD1328 /* MarbleViewController.swift */; };
+		1C86D54B1F45EC8900CD1328 /* PinkThumbPrint.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D5451F45EC8900CD1328 /* PinkThumbPrint.png */; };
+		1C86D54C1F45EC8900CD1328 /* OrangeThumbPrint.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D5461F45EC8900CD1328 /* OrangeThumbPrint.png */; };
+		1C86D54D1F45EC8900CD1328 /* PurpleThumbPrint.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D5471F45EC8900CD1328 /* PurpleThumbPrint.png */; };
+		1C86D54E1F45EC8900CD1328 /* BlueThumbPrint.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D5481F45EC8900CD1328 /* BlueThumbPrint.png */; };
+		1C86D54F1F45EC8900CD1328 /* GreenThumbPrint.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D5491F45EC8900CD1328 /* GreenThumbPrint.png */; };
+		1C86D5501F45EC8900CD1328 /* RedThumbPrint.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D54A1F45EC8900CD1328 /* RedThumbPrint.png */; };
+		1C86D5521F45F2C600CD1328 /* NoBall.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C86D5511F45F2C600CD1328 /* NoBall.png */; };
+		1C86D5541F46749600CD1328 /* GridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5531F46749600CD1328 /* GridItem.swift */; };
+		1C86D5561F4675F800CD1328 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5551F4675F800CD1328 /* Protocols.swift */; };
+		1C86D5581F46A24300CD1328 /* NumberShapeForMarbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5571F46A24300CD1328 /* NumberShapeForMarbles.swift */; };
+		1C86D55A1F476D3F00CD1328 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5591F476D3E00CD1328 /* Alerts.swift */; };
 		1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947731F17BA0400B62F31 /* TableViewCell.swift */; };
 		1CF947761F17BA3600B62F31 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947751F17BA3600B62F31 /* Init.swift */; };
 		1CF947781F17F58700B62F31 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947771F17F58700B62F31 /* Model.swift */; };
@@ -73,7 +89,7 @@
 /* Begin PBXFileReference section */
 		1C01F2371F16E68A0035621A /* Subitizations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Subitizations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C01F23A1F16E68A0035621A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C01F23C1F16E68A0035621A /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		1C01F23C1F16E68A0035621A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1C01F23F1F16E68A0035621A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C01F2441F16E68A0035621A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C01F2471F16E68A0035621A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,6 +124,22 @@
 		1C86D4051F31137B00CD1328 /* BareColumn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BareColumn.png; sourceTree = "<group>"; };
 		1C86D4111F311DCD00CD1328 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		1C86D4131F32338B00CD1328 /* TrophyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophyButton.swift; sourceTree = "<group>"; };
+		1C86D5381F428E8C00CD1328 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		1C86D53B1F45602B00CD1328 /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		1C86D53D1F4560B900CD1328 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		1C86D5401F45645300CD1328 /* TouchableBall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableBall.swift; sourceTree = "<group>"; };
+		1C86D5421F45E14000CD1328 /* MarbleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarbleViewController.swift; sourceTree = "<group>"; };
+		1C86D5451F45EC8900CD1328 /* PinkThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkThumbPrint.png; sourceTree = "<group>"; };
+		1C86D5461F45EC8900CD1328 /* OrangeThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeThumbPrint.png; sourceTree = "<group>"; };
+		1C86D5471F45EC8900CD1328 /* PurpleThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PurpleThumbPrint.png; sourceTree = "<group>"; };
+		1C86D5481F45EC8900CD1328 /* BlueThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueThumbPrint.png; sourceTree = "<group>"; };
+		1C86D5491F45EC8900CD1328 /* GreenThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenThumbPrint.png; sourceTree = "<group>"; };
+		1C86D54A1F45EC8900CD1328 /* RedThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedThumbPrint.png; sourceTree = "<group>"; };
+		1C86D5511F45F2C600CD1328 /* NoBall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoBall.png; sourceTree = "<group>"; };
+		1C86D5531F46749600CD1328 /* GridItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridItem.swift; sourceTree = "<group>"; };
+		1C86D5551F4675F800CD1328 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		1C86D5571F46A24300CD1328 /* NumberShapeForMarbles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberShapeForMarbles.swift; sourceTree = "<group>"; };
+		1C86D5591F476D3E00CD1328 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alerts.swift; path = ../Alerts.swift; sourceTree = "<group>"; };
 		1CF947731F17BA0400B62F31 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1CF947751F17BA3600B62F31 /* Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		1CF947771F17F58700B62F31 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -172,10 +204,13 @@
 		1C01F2391F16E68A0035621A /* Subitizations */ = {
 			isa = PBXGroup;
 			children = (
-				1C86D3911F23092000CD1328 /* Data & Delegate */,
-				1C86D38F1F2308DC00CD1328 /* Play View Controller */,
-				1C86D3901F23090500CD1328 /* App */,
+				1C86D38F1F2308DC00CD1328 /* Game View Controller */,
 				1C86D38E1F2308BA00CD1328 /* Login View Controller */,
+				1C86D5441F45E14700CD1328 /* MarbleViewController */,
+				1C86D53F1F45616100CD1328 /* GridViewController */,
+				1C86D53A1F44367900CD1328 /* WelcomeViewController */,
+				1C86D3911F23092000CD1328 /* Data & Delegate */,
+				1C86D3901F23090500CD1328 /* Global */,
 				1C01F23E1F16E68A0035621A /* Main.storyboard */,
 				1CF9477B1F1828C700B62F31 /* Assets */,
 				1C01F2441F16E68A0035621A /* Assets.xcassets */,
@@ -212,30 +247,34 @@
 			name = "Login View Controller";
 			sourceTree = "<group>";
 		};
-		1C86D38F1F2308DC00CD1328 /* Play View Controller */ = {
+		1C86D38F1F2308DC00CD1328 /* Game View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1C01F23C1F16E68A0035621A /* PlayViewController.swift */,
+				1C01F23C1F16E68A0035621A /* GameViewController.swift */,
 				1C86D3941F230E5400CD1328 /* ResponseButton.swift */,
 				1C86D4131F32338B00CD1328 /* TrophyButton.swift */,
 				1C86D3961F23D30800CD1328 /* Numbershape.swift */,
+				1C86D5401F45645300CD1328 /* TouchableBall.swift */,
 				1C01F26B1F16E6B30035621A /* Configurations.swift */,
 			);
-			name = "Play View Controller";
+			name = "Game View Controller";
 			sourceTree = "<group>";
 		};
-		1C86D3901F23090500CD1328 /* App */ = {
+		1C86D3901F23090500CD1328 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				1C86D5591F476D3E00CD1328 /* Alerts.swift */,
 				1CF947801F19A18900B62F31 /* Styles.swift */,
 				1CF947751F17BA3600B62F31 /* Init.swift */,
 				1CF947771F17F58700B62F31 /* Model.swift */,
 				1C86D3C51F282F2500CD1328 /* Levels.swift */,
+				1C86D5551F4675F800CD1328 /* Protocols.swift */,
 				1C86D4111F311DCD00CD1328 /* Library.swift */,
+				1C86D53D1F4560B900CD1328 /* ColorPicker.swift */,
 				1C01F26D1F16E88D0035621A /* Convenience.swift */,
 				1C86D3C71F29172300CD1328 /* State.swift */,
 			);
-			name = App;
+			name = Global;
 			sourceTree = "<group>";
 		};
 		1C86D3911F23092000CD1328 /* Data & Delegate */ = {
@@ -247,10 +286,39 @@
 			name = "Data & Delegate";
 			sourceTree = "<group>";
 		};
+		1C86D53A1F44367900CD1328 /* WelcomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C86D5381F428E8C00CD1328 /* WelcomeViewController.swift */,
+			);
+			name = WelcomeViewController;
+			sourceTree = "<group>";
+		};
+		1C86D53F1F45616100CD1328 /* GridViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C86D53B1F45602B00CD1328 /* GridViewController.swift */,
+				1C86D5531F46749600CD1328 /* GridItem.swift */,
+			);
+			name = GridViewController;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		1C86D5441F45E14700CD1328 /* MarbleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C86D5421F45E14000CD1328 /* MarbleViewController.swift */,
+				1C86D5571F46A24300CD1328 /* NumberShapeForMarbles.swift */,
+			);
+			name = MarbleViewController;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		1CF9477B1F1828C700B62F31 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 				1C86D3FB1F31137B00CD1328 /* RainbowTrophy.png */,
+				1C86D5511F45F2C600CD1328 /* NoBall.png */,
 				1C86D3FC1F31137B00CD1328 /* Avatar.png */,
 				1C86D3FD1F31137B00CD1328 /* LittleBlueTrophy.png */,
 				1C86D3FE1F31137B00CD1328 /* LittleGreenTrophy.png */,
@@ -261,6 +329,12 @@
 				1C86D4031F31137B00CD1328 /* GoldTrophy.png */,
 				1C86D4041F31137B00CD1328 /* BronzeTrophy.png */,
 				1C86D4051F31137B00CD1328 /* BareColumn.png */,
+				1C86D5451F45EC8900CD1328 /* PinkThumbPrint.png */,
+				1C86D5461F45EC8900CD1328 /* OrangeThumbPrint.png */,
+				1C86D5471F45EC8900CD1328 /* PurpleThumbPrint.png */,
+				1C86D5481F45EC8900CD1328 /* BlueThumbPrint.png */,
+				1C86D5491F45EC8900CD1328 /* GreenThumbPrint.png */,
+				1C86D54A1F45EC8900CD1328 /* RedThumbPrint.png */,
 				1C86D3CB1F2C76A600CD1328 /* WhiteButton.png */,
 				1C86D3981F255BB800CD1328 /* SquareButton.png */,
 				1CF947821F19A49700B62F31 /* BlueBall.png */,
@@ -386,8 +460,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C86D54B1F45EC8900CD1328 /* PinkThumbPrint.png in Resources */,
 				1CF947881F19A49700B62F31 /* PurpleBall.png in Resources */,
 				1CF947871F19A49700B62F31 /* OrangeBall.png in Resources */,
+				1C86D5501F45EC8900CD1328 /* RedThumbPrint.png in Resources */,
 				1CF947891F19A49700B62F31 /* RedBall.png in Resources */,
 				1C86D40C1F31137B00CD1328 /* BigGoldTrophy.png in Resources */,
 				1C86D3CA1F2922D400CD1328 /* PinkButton.png in Resources */,
@@ -397,17 +473,22 @@
 				1C86D40B1F31137B00CD1328 /* BigSilverTrophy.png in Resources */,
 				1C86D4081F31137B00CD1328 /* LittleBlueTrophy.png in Resources */,
 				1CF9477A1F1828C000B62F31 /* PinkBall.png in Resources */,
+				1C86D54D1F45EC8900CD1328 /* PurpleThumbPrint.png in Resources */,
 				1C86D40D1F31137B00CD1328 /* EmptyTrophy.png in Resources */,
+				1C86D54C1F45EC8900CD1328 /* OrangeThumbPrint.png in Resources */,
 				1C86D4061F31137B00CD1328 /* RainbowTrophy.png in Resources */,
 				1C01F2481F16E68A0035621A /* LaunchScreen.storyboard in Resources */,
 				1C86D40A1F31137B00CD1328 /* MedBronzeTrophy.png in Resources */,
+				1C86D54E1F45EC8900CD1328 /* BlueThumbPrint.png in Resources */,
 				1C86D40E1F31137B00CD1328 /* GoldTrophy.png in Resources */,
+				1C86D5521F45F2C600CD1328 /* NoBall.png in Resources */,
 				1C01F2451F16E68A0035621A /* Assets.xcassets in Resources */,
 				1C86D40F1F31137B00CD1328 /* BronzeTrophy.png in Resources */,
 				1C01F2401F16E68A0035621A /* Main.storyboard in Resources */,
 				1C86D4101F31137B00CD1328 /* BareColumn.png in Resources */,
 				1CF947861F19A49700B62F31 /* BlueBall.png in Resources */,
 				1C86D4071F31137B00CD1328 /* Avatar.png in Resources */,
+				1C86D54F1F45EC8900CD1328 /* GreenThumbPrint.png in Resources */,
 				1C86D3CE1F2C7A1C00CD1328 /* GlassBall.png in Resources */,
 				1C86D3CC1F2C76A600CD1328 /* WhiteButton.png in Resources */,
 				1CF9477F1F19A17B00B62F31 /* Clouds.png in Resources */,
@@ -435,21 +516,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C86D53C1F45602B00CD1328 /* GridViewController.swift in Sources */,
+				1C86D5581F46A24300CD1328 /* NumberShapeForMarbles.swift in Sources */,
 				1CF947811F19A18900B62F31 /* Styles.swift in Sources */,
 				1C86D4141F32338B00CD1328 /* TrophyButton.swift in Sources */,
 				1C01F26C1F16E6B30035621A /* Configurations.swift in Sources */,
+				1C86D5541F46749600CD1328 /* GridItem.swift in Sources */,
 				1C86D3971F23D30800CD1328 /* Numbershape.swift in Sources */,
 				1C86D3951F230E5400CD1328 /* ResponseButton.swift in Sources */,
+				1C86D55A1F476D3F00CD1328 /* Alerts.swift in Sources */,
 				1C01F26E1F16E88D0035621A /* Convenience.swift in Sources */,
+				1C86D5431F45E14000CD1328 /* MarbleViewController.swift in Sources */,
 				1C86D3931F230D2800CD1328 /* Data.swift in Sources */,
 				1CF947761F17BA3600B62F31 /* Init.swift in Sources */,
 				1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */,
+				1C86D5391F428E8C00CD1328 /* WelcomeViewController.swift in Sources */,
 				1C86D3C81F29172300CD1328 /* State.swift in Sources */,
 				1CF947A31F1A7E9C00B62F31 /* Data.xcdatamodeld in Sources */,
-				1C01F23D1F16E68A0035621A /* PlayViewController.swift in Sources */,
+				1C86D5561F4675F800CD1328 /* Protocols.swift in Sources */,
+				1C01F23D1F16E68A0035621A /* GameViewController.swift in Sources */,
 				1C86D3C61F282F2500CD1328 /* Levels.swift in Sources */,
 				1C01F23B1F16E68A0035621A /* AppDelegate.swift in Sources */,
+				1C86D5411F45645300CD1328 /* TouchableBall.swift in Sources */,
 				1C86D4121F311DCD00CD1328 /* Library.swift in Sources */,
+				1C86D53E1F4560B900CD1328 /* ColorPicker.swift in Sources */,
 				1CF9478B1F19AA8100B62F31 /* LoginViewController.swift in Sources */,
 				1CF947781F17F58700B62F31 /* Model.swift in Sources */,
 			);

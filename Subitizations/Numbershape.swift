@@ -25,9 +25,9 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
         
     }
     
-    var points = decompose(a: value, side: marblesize)
+    var points = numberShapeNodes(a: value, side: marblesize)
     
-    let sizeOfShape = _getShapeSize(points: points, r: marblesize/2)
+    let sizeOfShape = getShapeSize(points: points, r: marblesize/2)
     
     let shapeOffset = CGPoint(x: sizeOfShape.width/2, y: sizeOfShape.height/2)
     
@@ -49,7 +49,7 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
             
             ball.frame.size = CGSize(width: marblesize, height: marblesize)
             
-            ball.image = CurrentCounter
+            ball.image = ballimage
             
             
             UIView.animate(withDuration: 0.5, animations: {
@@ -73,20 +73,20 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
 }
 
 
-// Get the coordinates for placing a number inside of the square view.
-func decompose(a: Int, side: CGFloat) -> [CGPoint]
+// Get the coordinates for placing a number inside of the square view. 
+func numberShapeNodes(a: Int, side: CGFloat) -> [CGPoint]
 {
     
     
     let ballSize = CGSize(width: side, height: side)
     
-    // Size of number a
-
+    // Size of number
  
     // Set of points for number 'a'
     let ap = numbershapeXY(a: a, frame: ballSize)
     
-    let aSize = _getShapeSize(points: ap, r: side/2)
+    // _getShapeSize was rewritten. A legacy version still exists called getShapeSize
+    let aSize = getShapeSize(points: ap, r: side/2)
     
     // Numbershape coordinates are created with origin on the upper left. To center the entire shape around this origin we need to apply an offset equal to half the shapes height and width.
     let offSet = CGPoint(x: aSize.width/2, y: aSize.height/2)
@@ -96,10 +96,10 @@ func decompose(a: Int, side: CGFloat) -> [CGPoint]
     let adjap = ap.flatMap({C in subtractPoints(a: C, b: offSet)})
 
     
-    
     return adjap
     
 }
+
 
 
 
@@ -489,7 +489,7 @@ func numbershapeXY(a: Int,frame: CGSize) -> [CGPoint] {
 }
 
 
-func _getShapeSize(points: [CGPoint],r: CGFloat) -> CGSize
+func getShapeSize(points: [CGPoint],r: CGFloat) -> CGSize
 {
  
     let leftX = minX(points: points) - r
@@ -511,7 +511,7 @@ func _getShapeSize(points: [CGPoint],r: CGFloat) -> CGSize
 }
 
 
-//Gets the width and height of any numbershape based on the number and the ballsize
+/* Gets the width and height of any numbershape based on the number and the ballsize
 func getShapeSize(a: Int, ballsize: CGFloat)-> CGSize {
     
     var size: CGSize!
@@ -600,7 +600,7 @@ func getShapeSize(a: Int, ballsize: CGFloat)-> CGSize {
     
 }
 
-
+*/
 
 
 

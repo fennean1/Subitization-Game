@@ -36,11 +36,6 @@ extension UIButton {
 }
 
 
-
-
-
-
-
 // Extensions to CGRect take the container and style it according to the object it's being assigned to. Ex: foo.frame.StyleFoo styles the frame of foo.
 
 extension CGRect {
@@ -59,7 +54,7 @@ extension CGRect {
     
     }
     
-    
+    // Styles a timer label to be displayed in the upper right of the screen.
     mutating func styleTimerLabel(container: CGRect) {
         
         
@@ -126,7 +121,7 @@ extension CGRect {
     }
     
 
-    
+    // Gets the coordinates for hiding a view in the top left corner.
     mutating func styleHideTopLeft(hide: CGRect) {
         
         let h = hide.height
@@ -140,7 +135,23 @@ extension CGRect {
     }
     
     
+    
+    // Back Button Displayed on top left.
+    mutating func styleBackBtn(_ container: CGRect) {
+        
+        let h = container.height/10
+        let w = h
+        let y = h/2
+        let x = w/2
+        
+        self = CGRect(x: x, y: y, width: w, height: h)
+        
+        
+    }
+    
+    
 }
+
 
 
 
@@ -176,6 +187,8 @@ func getResponseButtonFrames(n: Int,container: CGRect) -> [CGRect]
 }
 
 
+
+// Right now the trophies are buttons.
 func getTrophyButtonFrames(n: Int,container: CGRect) -> [CGRect]
 {
     
@@ -205,5 +218,81 @@ func getTrophyButtonFrames(n: Int,container: CGRect) -> [CGRect]
     
 }
 
+
+
+
+
+extension UIButton {
+    
+    
+    func StyleAddBtn(container: CGRect) {
+        
+        var _frame: CGRect {
+            
+            let h = container.width/6
+            let w = h
+            let x = container.width -  h
+            let y = CGFloat(0)
+            
+            return CGRect(x: x, y: y, width: w, height: h)
+            
+        }
+        
+        
+        self.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: 100)
+        self.setTitle("+", for: .normal)
+        self.setTitleColor(BLUE, for: .normal)
+        self.frame = _frame
+        
+        
+    }
+    
+    func StyleSubBtn(container: CGRect) {
+        
+        var _frame: CGRect {
+            
+            let h = container.width/6
+            let w = h
+            let x = CGFloat(0)
+            let y = CGFloat(0)
+            
+            return CGRect(x: x, y: y, width: w, height: h)
+            
+        }
+        
+        
+        self.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: 100)
+        self.setTitle("-", for: .normal)
+        self.setTitleColor(UIColor.black, for: .normal)
+        self.frame = _frame
+        
+        
+    }
+
+    
+    
+    func styleChalkRect(text: String) {
+        
+        guard self.frame.height != 0 else {
+            
+            print("must Specify a frame befor styling")
+            
+            return 
+        }
+        
+        let fontsize = self.frame.height*0.5
+        
+        self.setBackgroundImage(PinkButton, for: .normal)
+        
+        self.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: fontsize)
+        
+        self.setTitleColor(UIColor.white, for: .normal)
+        
+        self.setTitle(text, for: .normal)
+        
+    
+    }
+    
+}
 
 

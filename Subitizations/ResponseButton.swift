@@ -29,8 +29,8 @@ class responsebutton: UIButton {
             
         }
         
-        // Avbout to draw number shape 
-        drawNumberShape(value: n, at: center, marbles: marbleViewArray, ballimage: CurrentCounter, marblesize: self.frame.width/5)
+        // About to draw number shape 
+        drawNumberShape(value: n, at: center, marbles: marbleViewArray, ballimage: vcGaCounterImage, marblesize: self.frame.width/5)
         
         
     }

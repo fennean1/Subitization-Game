@@ -1,13 +1,11 @@
-//
-//  Parachute.swift
-//  Multiplication Workout by NumberShapes
-//
-//  Created by Andrew Fenner on 8/23/16.
-//  Copyright © 2016 Andrew Fenner. All rights reserved.
-//
+
+
+
+// --- Library: Valuable components
 
 import Foundation
 import UIKit
+
 
 
 // View that falls in from the upper left hand corner.
@@ -170,4 +168,172 @@ class modalview: UIView
     
     
 }
+
+
+
+// get the coordinates for placing two numbers inside of the view
+func decompose(a:Int, b: Int,frame: CGSize) -> [CGPoint]
+{
+    
+    var p: [CGPoint] = []
+    
+    // Read the containers dimensions for convenience
+    let containerwidth = frame.width
+    let containerheight = frame.height
+    
+    // ballsize() in 'Helpers' - Calculates the size of a ball from a given frame.
+    let ball = ballsize(frame: frame)
+    
+    
+
+    // Set of points for number 'a'
+    let ap = numbershapeXY(a: a, frame: ball)
+    // Set of points for number 'b'
+    let bp = numbershapeXY(a: b, frame: ball)
+    
+    
+    
+    let adim = getShapeCenterOffset(a: a, ballsize: ball.width,points: ap)
+    let bdim = getShapeCenterOffset(a: b, ballsize: ball.height,points: bp)
+    
+    var aorigin = CGPoint(x: containerwidth/4, y: containerheight/2)
+    aorigin.offset(point: adim)
+    
+    var borigin = CGPoint(x: 3*containerwidth/4, y: containerheight/2)
+    borigin.offset(point: bdim)
+    
+
+    // Adjusted points for number 'a'
+    let adjap = ap.flatMap({C in addPoints(a: C, b: aorigin)})
+    
+
+    
+    // Adjusted points for number 'b'
+    let adjbp = bp.flatMap({C in addPoints(a: C, b: borigin)})
+    
+    
+    
+    p = adjap + adjbp
+    
+    
+    return p
+    
+}
+
+
+
+// NEED TO WRITE THIS SO IT USES THE GET SHAPE SIZE METHOD INSTEAD!!!
+func getShapeCenterOffset(a: Int, ballsize: CGFloat,points: [CGPoint]) -> CGPoint{
+    
+
+    var size: CGSize!
+    
+    switch a {
+        
+    case 1:
+        
+        size = CGSize(width: ballsize, height: ballsize)
+        
+    case 2:
+        
+        let w = ballsize
+        let h = 2*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+    case 3:
+        
+        let h = 2*ballsize*COS30
+        let w = 2*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+    case 4:
+        
+        let h = 2*ballsize
+        let w = 2*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+    case 5:
+        
+        let h = ballsize+2*ballsize*COS45
+        let w = ballsize+2*ballsize*COS45
+        
+        size = CGSize(width: w, height: h)
+        
+        
+    case 6:
+        
+        let h = 3*ballsize
+        let w = 2*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+    case 7:
+        
+        let h = 2*ballsize*COS30+ballsize
+        let w = 3*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+    case 8:
+        
+        let h = 2*ballsize*COS30+ballsize
+        let w = 3*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+    case 9:
+        
+        let h = 3*ballsize
+        let w = 3*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+        
+    case 10:
+        
+        let h = ballsize + 3*ballsize*COS30
+        let w = 4*ballsize
+        
+        size = CGSize(width: w, height: h)
+        
+        
+    default:
+        
+        print("didn't find anything")
+        size = CGSize(width: 0, height: 0)
+        
+    }
+    
+    
+    return CGPoint(x: size.width/2, y: size.height/2)
+    
+}
+
+// Offsets a particular point by another coordinate. Similar to adding function but only takes one argument for convenience.
+extension CGPoint {
+    
+    
+    mutating func offset(point: CGPoint) {
+        
+        let x = self.x - point.x
+        let y = self.y - point.y
+        
+        self = CGPoint(x: x, y: y)
+        
+    }
+    
+}
+
+
+
+
+// Color Picker
+
+
+
+
+
 

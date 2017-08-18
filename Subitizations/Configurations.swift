@@ -89,7 +89,7 @@ func drawConfiguration(value: Int, at: CGPoint, marbles: [UIImageView], ballimag
            
             marbles[index].isHidden = false
             
-            marbles[index].image = CurrentCounter
+            marbles[index].image = ballimage
             
             UIView.animate(withDuration: 0.5, animations: {marbles[index].center = centers[index]})
             }

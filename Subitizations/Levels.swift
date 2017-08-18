@@ -15,6 +15,8 @@ class player {
   
     var myName = "Jimmy"
     
+    
+    // Performance data lasts the lifetime of a game
     var myPerformanceData: [(Int,CGFloat,Int)] = [(1,0,0),(2,0,0),(3,0,0),(4,0,0),(5,0,0),(6,0,0),(7,0,0),(8,0,0),(9,0,0),(10,0,0)]
     
     var myCurrentLevel = Level()
@@ -29,6 +31,8 @@ class player {
         
     }
     
+    
+    // So that performance data can be reinitialized each game.
     func initPerformanceDataContext() {
         
         myPerformanceData = []
@@ -44,6 +48,8 @@ class player {
         
     }
     
+    
+    // Still working on the algorithm for calculating performance data.
     func updatePerfomanceDataFor(n: Int,with: CGFloat)
     {
         /*
@@ -73,6 +79,8 @@ class game {
 
 }
 
+
+//
 struct Level {
     
     var index = 0

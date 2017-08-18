@@ -1,10 +1,8 @@
-//
-//  Convenience.swift
-//  Subitizations
-//
-//  Created by Andrew Fenner on 7/12/17.
-//  Copyright © 2017 Andrew Fenner. All rights reserved.
-//
+
+
+
+// --- Convenience: For methods and constants designed to support other functions and make them more convenient.
+
 
 import Foundation
 import UIKit
@@ -50,6 +48,7 @@ let GreenBall = UIImage(named: "GreenBall")!
 let OrangeBall = UIImage(named: "OrangeBall")!
 let RedBall = UIImage(named: "RedBall")!
 let PurpleBall = UIImage(named: "PurpleBall")!
+let NoBall = UIImage(named: "NoBall")!
 let SquareButton = UIImage(named: "SquareButton")!
 let PinkButton = UIImage(named: "PinkButton")!
 let WhiteButton = UIImage(named: "WhiteButton")!
@@ -70,6 +69,15 @@ let backcolor = UIColor.white.withAlphaComponent(0.5)
 let lightbluecolor = UIColor(red: 0.1882, green: 0.6745, blue: 1, alpha: 0.3)
 let cellcolor = lightbluecolor.withAlphaComponent(0.2)
 let chalkboardfont = "Chalkboard SE"
+
+
+let purpleBtnImage = UIImage(named: "PurpleThumbPrint")
+let pinkBtnImage = UIImage(named: "PinkThumbPrint")
+let redBtnImage = UIImage(named: "RedThumbPrint")
+let orangeBtnImage = UIImage(named: "OrangeThumbPrint")
+let greenBtnImage = UIImage(named: "GreenThumbPrint")
+let blueBtnImage = UIImage(named: "BlueThumbPrint")
+
 
 
 var BallImages: [UIImage] = [BlueBall,PinkBall,RedBall,PurpleBall,OrangeBall,GreenBall]
@@ -125,24 +133,7 @@ func boundaryNodes(p: CGPoint,delta: CGFloat) -> [CGPoint] {
     
 }
 
-// Calculates the distance between two points.
-func distance(A: CGPoint,B: CGPoint) -> CGFloat
-{
-    
-    let x1 = A.x
-    let x2 = B.x
-    
-    let y1 = A.y
-    let y2 = B.y
-    
-    let deltaX = x1-x2
-    let deltaY = y1-y2
-    
-    let squaresum = deltaX*deltaX + deltaY*deltaY
-    
-    return sqrt(squaresum)
-    
-}
+
 
 
 func getOffsetForConfiguration(points: [CGPoint],r: CGFloat) -> CGPoint {
@@ -163,6 +154,64 @@ func getOffsetForConfiguration(points: [CGPoint],r: CGFloat) -> CGPoint {
     
     return CGPoint(x: -offX, y: -offY)
     
+}
+
+func getMarbleFromColorState(state: colorstate) -> UIImage
+{
+    
+    switch state {
+        
+    case .blue:
+        
+        return BlueBall
+        
+    case .orange:
+        
+        return OrangeBall
+    
+    case .red:
+        
+        return RedBall
+        
+    case .pink:
+        
+        return PinkBall
+    
+    case .purple:
+        
+        return PurpleBall
+    
+    case .green:
+        
+        return GreenBall
+        
+    case .nothing:
+        
+        return NoBall
+        
+    }
+    
+}
+
+func getShapeSize(points: [CGPoint],counterSize: CGSize) -> CGSize
+{
+    let xPadding = counterSize.width/2
+    let yPadding = counterSize.height/2
+    
+    let leftX = minX(points: points) - xPadding
+    
+    let rightX = maxX(points: points) + xPadding
+    
+    let lowerY = minY(points: points) - yPadding
+    
+    let upperY = maxY(points: points) + yPadding
+    
+    let w = rightX - leftX
+    
+    let h = upperY - lowerY
+
+    return CGSize(width: w, height: h)
+
 }
 
 
@@ -343,6 +392,51 @@ func bouncePoints(points: [CGPoint],center: CGPoint) -> [CGPoint] {
     }
     
     return returnArr
+    
+}
+
+
+
+
+
+// Pre - Set Colors
+
+func rgbColor(Red: Int,Green: Int, Blue: Int, Alpha: CGFloat) -> UIColor
+{
+    
+    return UIColor(red: CGFloat(Red/255) ,green: CGFloat(Green/255),blue: CGFloat(Blue/255) ,alpha: Alpha)
+    
+}
+
+let ORANGE = UIColor(red: 1, green: 0.6627, blue: 0.3294, alpha: 1.0)
+
+let BLUE = UIColor(red: 0.1176, green: 0.3961, blue: 1, alpha: 1.0)
+
+let RED = UIColor(red: 0.9373, green: 0.0902, blue: 0.0902, alpha: 1.0)
+
+let GREEN = UIColor(red: 0.102, green: 0.9176, blue: 0.0902, alpha: 1.0)
+
+let PURPLE = UIColor(red: 0.7373, green: 0.3098, blue: 0.949, alpha: 1.0)
+
+let PINK = UIColor(red: 1, green: 0.1176, blue: 0.8824, alpha: 1.0)
+
+
+var MarbleImages: [UIImage] = [BlueBall,PinkBall,RedBall,PurpleBall,OrangeBall,GreenBall]
+
+
+func getMeshCenter(mesh: [CGPoint]) -> CGPoint {
+    
+    
+    let right  = maxX(points: mesh)
+    let top = maxY(points: mesh)
+    let left = minX(points: mesh)
+    let bottom = minY(points: mesh)
+    
+    let x = (right - left)/2
+    let y = (top - bottom)/2
+    
+    return CGPoint(x: x, y: y)
+    
     
 }
 

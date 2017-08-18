@@ -1,10 +1,8 @@
-//
-//  State.swift
-//  Subitizations
-//
-//  Created by Andrew Fenner on 7/26/17.
-//  Copyright © 2017 Andrew Fenner. All rights reserved.
-//
+
+
+
+//----- State: For managing variables and methods that control or update the state of the game.
+
 
 import Foundation
 import UIKit
