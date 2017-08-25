@@ -40,6 +40,9 @@ var vcGaMainMarble = BlueBall
 
 var vcGaAccentMarble = OrangeBall
 
+var vcGaBackBtn = UIButton()
+
+
 class GameViewController: UIViewController {
 
     var localTimer = Timer()
@@ -423,7 +426,7 @@ class GameViewController: UIViewController {
         view.addSubview(vcGaStartButton)
         view.addSubview(ScoreLabel)
         
-        vcGaNextButton.styleChalkRect(text: "Next - >")
+        vcGaNextButton.styleChalkRect(text: "Next->")
         vcGaStartButton.styleChalkRect(text: "Start")
         
         
@@ -433,6 +436,11 @@ class GameViewController: UIViewController {
         
         
         view.addSubview(Modal)
+        
+        view.addSubview(vcGaBackBtn)
+        vcGaBackBtn.frame.styleBackBtn(view.frame)
+        vcGaBackBtn.styleArrowBack()
+        
            
 
     }

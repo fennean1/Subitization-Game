@@ -38,7 +38,7 @@ func initHundredGrid(size: CGFloat) -> [CGPoint] {
 }
 
 
-
+var vcGrBackButton = UIButton()
 
 
 class GridViewController: UIViewController {
@@ -79,6 +79,23 @@ class GridViewController: UIViewController {
     override func viewDidLoad() {
         
         
+    
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        view.addSubview(BackGround)
+        BackGround.image = UIImage(named: "Clouds")
+        BackGround.frame.styleFillContainer(container: view.frame)
+        
+
+        view.addSubview(vcGrBackButton)
+        vcGrBackButton.frame.styleBackBtn(view.frame)
+        vcGrBackButton.styleArrowBack()
+        
         var gridPoints = initHundredGrid(size: 55)
         
         let meshCenter = getMeshCenter(mesh: gridPoints)
@@ -91,12 +108,6 @@ class GridViewController: UIViewController {
         
         drawElements(image: PinkBall, at: gridPoints, size: 55)
         
-        // Do any additional setup after loading the view, typically from a nib.
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
         
         colorPicker.colorpickerStyle(frame: view.frame)
         
@@ -104,7 +115,12 @@ class GridViewController: UIViewController {
         
         view.addSubview(colorPicker)
         
+    
+
+        
         super.viewDidLoad()
+        
+        
         
         
         

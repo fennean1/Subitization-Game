@@ -11,57 +11,23 @@ import CoreData
 import Foundation
 
 
-// Properties
-let vcWeActivities = 2
-
-
 // Styles
-extension CGRect
-{
-    
-    mutating func styleGoToMarbles(container: CGRect) {
-        
-        let w = container.width/4
-        let h = w/5
-        let x = container.width/2 - w/2
-        let y = container.height/4
-        
-        self = CGRect(x: x, y: y, width: w, height: h)
-        
-    }
-    
-    mutating func styleGoToGame(container: CGRect) {
-        
-        let w = container.width/4
-        let h = w/5
-        let x = container.width/2 - w/2
-        let y = container.height/4 + h
-        
-        self = CGRect(x: x, y: y, width: w, height: h)
-        
-    }
-    
-    mutating func styleGoToGrid(container: CGRect) {
-        
-        let w = container.width/4
-        let h = w/5
-        let x = container.width/2 - w/2
-        let y = container.height/4 + 2*h
-        
-        self = CGRect(x: x, y: y, width: w, height: h)
-        
-    }
-    
-}
+
 
 // UI Elements
 
-var vcWeGoToMarblesBtn = UIButton()
-var vcWeGoToGameBtn = UIButton()
-var vcWeGoToGridBtn = UIButton()
+// var vcWeGoToMarblesBtn = UIButton()
+// var vcWeGoToGameBtn = UIButton()
+// var vcWeGoToGridBtn = UIButton()
+
+var NumberShape: _numbershape!
 
 
-class WelcomeViewController: UIViewController
+let vline = UIView()
+
+var vcTeBackBtn = UIButton()
+
+class TestViewController: UIViewController
 {
     
     func segueToGame(sender: UIButton)
@@ -70,7 +36,6 @@ class WelcomeViewController: UIViewController
         let vc : AnyObject! = self.storyboard!.instantiateViewController(withIdentifier: "GameViewController")
         
         self.show(vc as! UIViewController, sender: vc)
-        
         
     }
     
@@ -93,15 +58,28 @@ class WelcomeViewController: UIViewController
     
     
     override func viewDidAppear(_ animated: Bool) {
-
-        let thisContainer = view.frame
         
-        // Add the background   
+        
+
+     
+        NumberShape = _numbershape(view: view)
+        
+        // NumberShape.drawTwoDigits(firstDigit: 3, secondDigit: 3, at: view.center, ofSize: CGSize(width: 50,height: 50) , withImage: PinkBall)
+
+        
+        NumberShape.drawSingleDigit(number: 3, at: view.center, ofSize: CGSize(width: 50,height: 50) , withImage: PinkBall)
+
+        
+        view.addSubview(vcTeBackBtn)
+        vcTeBackBtn.frame.styleBackBtn(view.frame)
+        vcTeBackBtn.styleArrowBack()
+        
+        /* Add the background
         view.addSubview(BackGround)
         BackGround.image = UIImage(named: "Clouds")
         BackGround.frame.styleFillContainer(container: view.frame)
         
-
+        
         
         // Set Up Buttons
         
@@ -109,18 +87,18 @@ class WelcomeViewController: UIViewController
         view.addSubview(vcWeGoToMarblesBtn)
         vcWeGoToMarblesBtn.frame.styleGoToMarbles(container: thisContainer)
         vcWeGoToMarblesBtn.styleChalkRect(text: "Marbles")
-       
+        
         // Game Button
         view.addSubview(vcWeGoToGameBtn)
         vcWeGoToGameBtn.frame.styleGoToGame(container: thisContainer)
         vcWeGoToGameBtn.styleChalkRect(text: "Game")
-   
+        
         // Grid Button
         view.addSubview(vcWeGoToGridBtn)
         vcWeGoToGridBtn.frame.styleGoToGrid(container: thisContainer)
         vcWeGoToGridBtn.styleChalkRect(text: "Grid")
-     
         
+        */
         
         
     }
@@ -129,10 +107,7 @@ class WelcomeViewController: UIViewController
         
         super.viewDidLoad()
         
-        vcWeGoToMarblesBtn.addTarget(self, action: #selector(segueToMarbles(sender:)), for: .touchUpInside)
-        vcWeGoToGameBtn.addTarget(self, action: #selector(segueToGame(sender:)), for: .touchUpInside)
-        vcWeGoToGridBtn.addTarget(self, action: #selector(segueToGrid(sender:)), for: .touchUpInside)
-        
+    
         
     }
     

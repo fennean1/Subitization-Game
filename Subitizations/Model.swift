@@ -72,17 +72,6 @@ import UIKit
 var Toggler = 0
 
 
-// Convenience:
-
-var Balls: [touchableBall] = []
-
-var BallsInPlay = 14
-
-// UIElements
-
-var addBtn = UIButton()
-var subBtn = UIButton()
-
 var BallDim: CGFloat = 0
 
 // Initialize counter
@@ -94,18 +83,14 @@ let BallArray = [BlueBall,OrangeBall,RedBall,GreenBall,PinkBall,PurpleBall]
 
 var colorSwitching = false
 
-var Split = false
-
 var counterimage = BlueBall
 
 var originalCoordinates: [CGPoint] = []
 
 var numbershapeViewOrigin: CGPoint!
 
-var a = 10
-var b = 4
-
-var Scattered = false
+var a = 5
+var b = 0
 
 
 //// Functions

@@ -1,8 +1,8 @@
 //
-//  Numbershape.swift
+//  NumberShapesLibrary.swift
 //  Subitizations
 //
-//  Created by Andrew Fenner on 7/22/17.
+//  Created by Andrew Fenner on 8/19/17.
 //  Copyright © 2017 Andrew Fenner. All rights reserved.
 //
 
@@ -10,62 +10,80 @@ import Foundation
 import UIKit
 
 
-func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: UIImage, marblesize: CGFloat) {
+class _counter: UIImageView {
     
-
     
-    // We're not going to deal with anything where the balls array is not size ten and the number we're drawing is greater than ten. If we want to draw numbershapes with values greater than 10 we need nesting
-    guard value <= 10, marbles.count == 10 else {
+    
+}
 
+
+class _numbershape {
+    
+    var Counters: [_counter] = []
+    
+    var CountersOnView: [_counter] = []
+    
+    func drawSingleDigit(number: Int,at: CGPoint,ofSize: CGSize,withImage: UIImage) {
         
+        print("this is the number i'm trying to draw",number)
         
-        print("The size of your array must be 10 and the value you draw must be less than or equal to ten. Your array is ",marbles.count,"and your value is",value)
+       let pointsToDraw = centerNumberShapeCoordinates(atLocation: at, forValue: number, ofSize: ofSize)
         
-        return
+        print("The Number Of Points We're Drawing Is:", pointsToDraw.count)
+        
+       for (i,c) in pointsToDraw.enumerated()
+       {        
+            Counters[i].center = c
+            Counters[i].image = withImage
+            Counters[i].frame.size = ofSize
+        
+        }
         
     }
     
-    var points = numberShapeNodes(a: value, side: marblesize)
-    
-    let sizeOfShape = getShapeSize(points: points, r: marblesize/2)
-    
-    let shapeOffset = CGPoint(x: sizeOfShape.width/2, y: sizeOfShape.height/2)
-    
-    let combinedOffset = subtractPoints(a: at, b: shapeOffset)
-    
-
-    points = points.map({C in addPoints(a: C, b: at)})
-
-
-    for (index,ball) in marbles.enumerated() {
+    func drawTwoDigits(firstDigit: Int,secondDigit: Int, at: CGPoint, ofSize: CGSize,withImage: UIImage)
+    {
         
-        var drawBall: Bool {return index < value}
+        print("Passed into drawTwoDigits the values",firstDigit,"and",secondDigit)
         
         
-        if drawBall {
+        let centerOffset = CGPoint(x: 2.5*ofSize.width, y: 0)
+        let firstDigitCenter = subtractPoints(a: at, b: centerOffset)
+        let secondDigitCenter = addPoints(a: at, b: centerOffset)
+        
+        let pointsForFirstDigit = centerNumberShapeCoordinates(atLocation: firstDigitCenter, forValue: firstDigit, ofSize: ofSize)
+        
+       
+        
+        let pointsForSecondDigit = centerNumberShapeCoordinates(atLocation: secondDigitCenter, forValue: secondDigit, ofSize: ofSize)
+        
+        
+        let pointsToDraw = pointsForFirstDigit + pointsForSecondDigit
+        
+        for (i,c) in pointsToDraw.enumerated()
+        {
+            Counters[i].center = c
+            Counters[i].image = withImage
+            Counters[i].frame.size = ofSize
             
+        }
+        
+    }
     
-            ball.isHidden = false
+    
+    init(view: UIView) {
+    
+        for _ in 1...20
+        {
             
-            ball.frame.size = CGSize(width: marblesize, height: marblesize)
-            
-            ball.image = ballimage
-            
-            
-            UIView.animate(withDuration: 0.5, animations: {
-      
-                ball.center = points[index]
-                
-            })
-            
-            }
-            else {
-            
-            ball.isHidden = true
+            let newCounter = _counter()
+            view.addSubview(newCounter)
+            Counters.append(newCounter)
             
         }
         
         
+        print("The number of counters has been initialized to:", Counters.count)
         
     }
     
@@ -73,42 +91,57 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
 }
 
 
-// Get the coordinates for placing a number inside of the square view. 
-func numberShapeNodes(a: Int, side: CGFloat) -> [CGPoint]
-{
-    
-    
-    let ballSize = CGSize(width: side, height: side)
-    
-    // Size of number
- 
-    // Set of points for number 'a'
-    let ap = numbershapeXY(a: a, frame: ballSize)
-    
-    // _getShapeSize was rewritten. A legacy version still exists called getShapeSize
-    let aSize = getShapeSize(points: ap, r: side/2)
-    
-    // Numbershape coordinates are created with origin on the upper left. To center the entire shape around this origin we need to apply an offset equal to half the shapes height and width.
-    let offSet = CGPoint(x: aSize.width/2, y: aSize.height/2)
-    
-    
-    // Apply offset
-    let adjap = ap.flatMap({C in subtractPoints(a: C, b: offSet)})
 
+// Call this and then add the array of images to your superview.
+func centerNumberShapeCoordinates(atLocation: CGPoint, forValue: Int, ofSize: CGSize) -> [CGPoint] {
     
-    return adjap
+    print("We're getting centered coordinates for the value",forValue)
+    
+    let numberShapePoints = getOriginNumberShapePoints(forNumber: forValue, ofSize: ofSize)
+    
+    let centeredPointsAtLocation = numberShapePoints.flatMap({C in addPoints(a: C, b: atLocation)})
+
+    return centeredPointsAtLocation
+    
+}
+
+
+// Gets the size of a numbershape based on the points and counter size.
+func getSizeOfShape(points: [CGPoint],counterSize: CGSize) -> CGSize
+{
+    let r = counterSize.width/2
+    
+    let leftX = minX(points: points) - r
+    
+    let rightX = maxX(points: points) + r
+    
+    let lowerY = minY(points: points) - r
+    
+    let upperY = maxY(points: points) + r
+    
+    let deltaX = abs(rightX - leftX)
+    
+    let deltaY = abs(upperY - lowerY)
+    
+    
+    return CGSize(width: deltaX, height: deltaY)
     
 }
 
 
 
-// Finds and array of centers for the pre-defined numbershapes in terms of value and ball size
-func numbershapeXY(a: Int,frame: CGSize) -> [CGPoint] {
+// Returns a numbershape with the center at the origin.
+func getOriginNumberShapePoints(forNumber: Int,ofSize: CGSize) -> [CGPoint] {
+    
+    print("We're trying to find the case for",a)
     
     var c: [CGPoint] = []
-    let size = frame.width
     
-    switch a {
+    // Size is read as the width or height since it will always be the same.(e.g. size = ofSize.height and size = ofSize.width)
+    
+    let size = ofSize.width
+    
+    switch forNumber {
         
     // Coordinates for One Ball
     case 0:
@@ -139,6 +172,7 @@ func numbershapeXY(a: Int,frame: CGSize) -> [CGPoint] {
     // Coordinates for Three Balls
     case 3:
         
+        print("entered Case 3")
         
         // Top Ball
         let x1 = size
@@ -414,6 +448,8 @@ func numbershapeXY(a: Int,frame: CGSize) -> [CGPoint] {
         
     case 10:
         
+        print("We've entered the case for 10")
+        
         // Top
         let x1 = 2*size
         let y1 = size/2
@@ -482,136 +518,15 @@ func numbershapeXY(a: Int,frame: CGSize) -> [CGPoint] {
         
     }
     
-    return c
+    // Create offset so that the center is placed at the origin.
+    let shapeSize = getSizeOfShape(points: c, counterSize: ofSize)
+    let offset = CGPoint(x: shapeSize.width/2, y: shapeSize.height/2)
+    
+
+    let pointsCenteredAtOrigin = c.flatMap({C in subtractPoints(a: C, b: offset)})
+
+    print("Returning the number of points:",pointsCenteredAtOrigin.count)
+    
+    return pointsCenteredAtOrigin
     
 }
-
-
-// BOTH OF THESE FUNCTIONS DO THE SAME THING.
-
-func getShapeSize(points: [CGPoint],r: CGFloat) -> CGSize
-{
- 
-    let leftX = minX(points: points) - r
-    
-    let rightX = maxX(points: points) + r
-    
-    let lowerY = minY(points: points) - r
-    
-    let upperY = maxY(points: points) + r
-    
-    let deltaX = abs(rightX - leftX)
-    
-    let deltaY = abs(upperY - lowerY)
-    
-    
-    return CGSize(width: deltaX, height: deltaY)
-    
-    
-}
-
-
-// BOTH OF THESE FUNCTIONS DO THE SAME THING.
-
-// Gets the width and height of any numbershape based on the number and the ballsize
-func getShapeDimensions(a: Int, ballsize: CGFloat)-> CGSize {
-    
-    var size: CGSize!
-    
-    switch a {
-        
-    case 1:
-        
-        size = CGSize(width: ballsize, height: ballsize)
-        
-    case 2:
-        
-        let w = ballsize
-        let h = 2*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-    case 3:
-        
-        let h = 2*ballsize*COS30
-        let w = 2*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-    case 4:
-        
-        let h = 2*ballsize
-        let w = 2*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-    case 5:
-        
-        let h = ballsize+2*ballsize*COS45
-        let w = ballsize+2*ballsize*COS45
-        
-        size = CGSize(width: w, height: h)
-        
-        
-    case 6:
-        
-        let h = 3*ballsize
-        let w = 2*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-    case 7:
-        
-        let h = 2*ballsize*COS30+ballsize
-        let w = 3*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-    case 8:
-        
-        let h = 2*ballsize*COS30+ballsize
-        let w = 3*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-    case 9:
-        
-        let h = 3*ballsize
-        let w = 3*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-        
-    case 10:
-        
-        let h = ballsize + 3*ballsize*COS30
-        let w = 4*ballsize
-        
-        size = CGSize(width: w, height: h)
-        
-        
-    default:
-        
-        print("didn't find anything")
-        size = CGSize(width: 0, height: 0)
-        
-    }
-    
-    
-    return size
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

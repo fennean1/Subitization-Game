@@ -155,8 +155,6 @@ extension CGRect {
 
 
 
-
-
 func getResponseButtonFrames(n: Int,container: CGRect) -> [CGRect]
 {
     
@@ -227,23 +225,24 @@ extension UIButton {
     
     func StyleAddBtn(container: CGRect) {
         
+        
         var _frame: CGRect {
             
             let h = container.width/6
             let w = h
             let x = container.width -  h
-            let y = CGFloat(0)
+            let y = container.height/2
             
             return CGRect(x: x, y: y, width: w, height: h)
             
         }
-        
-        
+    
         self.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: 100)
         self.setTitle("+", for: .normal)
-        self.setTitleColor(BLUE, for: .normal)
+        self.setTitleColor(UIColor.black, for: .normal)
         self.frame = _frame
         
+    
         
     }
     
@@ -254,7 +253,7 @@ extension UIButton {
             let h = container.width/6
             let w = h
             let x = CGFloat(0)
-            let y = CGFloat(0)
+            let y = container.height/2
             
             return CGRect(x: x, y: y, width: w, height: h)
             
@@ -270,7 +269,7 @@ extension UIButton {
     }
 
     
-    
+    // Styles the button as a pink rectangle with chalkboard SE font.
     func styleChalkRect(text: String) {
         
         guard self.frame.height != 0 else {
@@ -291,6 +290,19 @@ extension UIButton {
         self.setTitle(text, for: .normal)
         
     
+    }
+    
+    func styleArrowBack()
+    {
+        
+        
+        let fontsize = self.frame.height
+    
+        self.titleLabel?.font = UIFont(name: "ChalkBoard SE", size: fontsize)
+        
+        self.setTitleColor(UIColor.gray, for: .normal)
+        
+        self.setTitle("<", for: .normal)
     }
     
 }

@@ -8,6 +8,52 @@
 
 import UIKit
 
+// UIElements
+
+var vcMaAddBtn = UIButton()
+var vcMaSubBtn = UIButton()
+
+var Scattered = false
+var Split = false
+
+var Balls: [touchableBall] = []
+
+// Initial balls in play set to 5
+var BallsInPlay = 5
+
+// Center of the view. Calculated on viewDidLoad
+var vcMaCenter: CGPoint!
+
+var vcMaBackBtn = UIButton()
+
+var bouncedBallCenters: [CGPoint]!
+
+// Pushes the ball centers outward so we can expand the shape. This is called each time the Balls aray is updated.
+func bounceBallCenters() -> [CGPoint] {
+    
+    var returnNewPoints: [CGPoint] = []
+    
+    for (index,aBall) in Balls.enumerated() {
+        
+        let unitVector = subtractPoints(a: aBall.center, b: vcMaCenter)
+        
+        let vector = CGPoint(x: unitVector.x*1.10, y: unitVector.y*1.10)
+        
+        if index < BallsInPlay {
+            
+            let newCenter = addPoints(a: vcMaCenter, b: vector)
+            
+            returnNewPoints.append(newCenter)
+            
+        }
+    }
+    
+    return returnNewPoints
+    
+}
+
+
+
 class MarbleViewController: UIViewController {
     
     var Help: helpview!
@@ -17,14 +63,25 @@ class MarbleViewController: UIViewController {
     
     @IBOutlet weak var HelpButton: UIButton!
     
-    var colorPicker = colorpicker()
+    var colorPicker = colorpickermarbles()
     
     
+    func back(sender: UIButton)
+    {
+        
+        let vc : AnyObject! = self.storyboard!.instantiateViewController(withIdentifier: "WelcomeViewController")
+        
+        self.show(vc as! UIViewController, sender: vc)
+        
+        
+    }
     
     
     
     func addBall(sender: UIButton)
     {
+        
+      
         
         if BallsInPlay < 20
         {
@@ -53,16 +110,15 @@ class MarbleViewController: UIViewController {
             
             BallsInPlay = BallsInPlay+1
             
-            
         }
         
+        bouncedBallCenters = bounceBallCenters()
         
         
     }
     
     func subBall(sender: UIButton)
     {
-        
         
         if BallsInPlay > 0
         {
@@ -84,17 +140,16 @@ class MarbleViewController: UIViewController {
             
             numbershape.composeNumber(a: newValue)
             
-            
-            
+            // When you add a ball they exit their state (either split or scattered)
             Split = false
-            
             Scattered = false
             
             BallsInPlay = BallsInPlay - 1
             
-            
-            
         }
+        
+        bouncedBallCenters = bounceBallCenters()
+        
         
         
     }
@@ -108,42 +163,36 @@ class MarbleViewController: UIViewController {
     
     func pinch(_ sender: UIPinchGestureRecognizer){
         
+        
         if sender.scale > 1
         {
             
-            let center = CGPoint(x: view.frame.width/2, y: view.frame.height/2)
-            
-            
-            
+       
             UIView.animate(withDuration: 0.8, animations: {
                 
-                for (index,aBall) in Balls.enumerated() {
-                    
-                    let unitVector = subtractPoints(a: aBall.center, b: center)
-                    
-                    let vector = CGPoint(x: unitVector.x*1.05, y: unitVector.y*1.05)
-                    
-                    if index < BallsInPlay {
+            
+                for (i,b) in Balls.enumerated() {
+                
+                
+                    if i < BallsInPlay {
                         
-                        let newCenter = addPoints(a: center, b: vector)
-                        
-                        aBall.center = newCenter
+                        b.center = bouncedBallCenters[i]
                         
                     }
+                    
                 }
-                
-                
+            
             })
             
             Scattered = true
             
-            
         }
         else{
             
+            bouncedBallCenters = bounceBallCenters()
+            
             if Scattered == true && Split == false
             {
-                
                 
                 numbershape.animateto(coordinates: originalCoordinates)
                 Scattered = false
@@ -167,8 +216,8 @@ class MarbleViewController: UIViewController {
                     
                 }
             }
-            
         }
+        
     }
     
     
@@ -181,9 +230,16 @@ class MarbleViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        view.addSubview(BackGround)
+        BackGround.image = UIImage(named: "Clouds")
+        BackGround.frame.styleFillContainer(container: view.frame)
+        
+        // Create global variable for view center (purely for convenience)
+        vcMaCenter = CGPoint(x: view.frame.width/2, y: view.frame.height/2)
+        
         view.addSubview(numbershape)
         
-        // Center the test view frame:
+        // Calculate the numbershapes frame:
         var numbershapesframe: CGRect {
             
             let w = view.frame.width*0.8
@@ -197,7 +253,6 @@ class MarbleViewController: UIViewController {
         
         
         colorPicker.colorpickerStyle(frame: view.frame)
-        
         colorPicker.drawButtons()
         
         view.addSubview(colorPicker)
@@ -206,16 +261,15 @@ class MarbleViewController: UIViewController {
         
         numbershapeViewOrigin = numbershape.frame.origin
         
-        addBtn.addTarget(self, action: #selector(MarbleViewController.addBall(sender:)), for: .touchUpInside)
-        subBtn.addTarget(self, action: #selector(MarbleViewController.subBall(sender:)), for: .touchUpInside)
+        vcMaAddBtn.addTarget(self, action: #selector(MarbleViewController.addBall(sender:)), for: .touchUpInside)
+        vcMaSubBtn.addTarget(self, action: #selector(MarbleViewController.subBall(sender:)), for: .touchUpInside)
         
         
+        vcMaAddBtn.StyleAddBtn(container: view.frame)
+        vcMaSubBtn.StyleSubBtn(container: view.frame)
         
-        addBtn.StyleAddBtn(container: view.frame)
-        subBtn.StyleSubBtn(container: view.frame)
-        
-        view.addSubview(addBtn)
-        view.addSubview(subBtn)
+        view.addSubview(vcMaAddBtn)
+        view.addSubview(vcMaSubBtn)
         
         BallDim = ballsize(frame: numbershapesframe.size).width
         
@@ -250,6 +304,14 @@ class MarbleViewController: UIViewController {
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(MarbleViewController.pinch(_:)))
         view.addGestureRecognizer(pinch)
         
+        bouncedBallCenters = bounceBallCenters()
+        
+        view.addSubview(vcMaBackBtn)
+        vcMaBackBtn.frame.styleBackBtn(view.frame)
+        vcMaBackBtn.styleArrowBack()
+        
+        
+        vcMaBackBtn.addTarget(self, action: #selector(back(sender:)), for: .touchUpInside)
         
         
         super.viewDidLoad()

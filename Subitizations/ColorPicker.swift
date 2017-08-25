@@ -146,35 +146,35 @@ class colorpicker: UIView {
         case blueButton:
             
             ColorState = .blue
-            addBtn.setTitleColor(BLUE, for: .normal)
+            vcMaAddBtn.setTitleColor(BLUE, for: .normal)
             
         case orangeButton:
             
             ColorState = .orange
-            addBtn.setTitleColor(ORANGE, for: .normal)
+            vcMaAddBtn.setTitleColor(ORANGE, for: .normal)
             
         case purpleButton:
             
             ColorState = .purple
-            addBtn.setTitleColor(PURPLE, for: .normal)
+            vcMaAddBtn.setTitleColor(PURPLE, for: .normal)
             
         case pinkButton:
             
             ColorState = .pink
-            addBtn.setTitleColor(PINK, for: .normal)
+           vcMaAddBtn.setTitleColor(PINK, for: .normal)
             
             
         case redButton:
             
             ColorState = .red
-            addBtn.setTitleColor(RED, for: .normal)
+            vcMaAddBtn.setTitleColor(RED, for: .normal)
             
             
         case greenButton:
             
             
             ColorState = .green
-            addBtn.setTitleColor(GREEN, for: .normal)
+            vcMaAddBtn.setTitleColor(GREEN, for: .normal)
             
         case nothingButton:
             
@@ -183,7 +183,7 @@ class colorpicker: UIView {
         default:
             
             State = .blue
-            addBtn.setTitleColor(BLUE, for: .normal)
+            vcMaAddBtn.setTitleColor(BLUE, for: .normal)
             
         }
         
@@ -283,6 +283,187 @@ class colorpicker: UIView {
     
     
 }
+
+
+
+
+class colorpickermarbles: UIView {
+    
+    // Conform to colorManager protocol
+    var State = colorstate.blue
+    
+    
+    // This might be stupid. All I'm doing is surveying the buttons to see if any of them are active.
+    var active: Bool {
+        
+        var _active = false
+        
+        for abutton in buttonArray {
+            
+            if abutton.active == true
+            {
+                _active = true
+            }
+            
+        }
+        
+        return _active
+        
+    }
+    
+    
+    var blueButton = colorbutton()
+    var orangeButton = colorbutton()
+    var purpleButton = colorbutton()
+    var redButton = colorbutton()
+    var greenButton = colorbutton()
+    var pinkButton = colorbutton()
+    var buttonArray: [colorbutton] = []
+    
+    
+    // Dependency Issue! Can't reuse ColorPicker if it's updating elements from another view controller. It's okay right now since the "addBtn" is currently global. Still must refactor.
+    
+    func buttonPress(sender: colorbutton)
+    {
+        
+        // sender.type is a bad name, the type is acutally the image associated with this sender. Fix later.
+        
+        
+        // Obviously there's a better way to do this.
+        switch sender {
+            
+        case blueButton:
+            
+            ColorState = .blue
+            vcMaAddBtn.setTitleColor(BLUE, for: .normal)
+            
+        case orangeButton:
+            
+            ColorState = .orange
+            vcMaAddBtn.setTitleColor(ORANGE, for: .normal)
+            
+        case purpleButton:
+            
+            ColorState = .purple
+            vcMaAddBtn.setTitleColor(PURPLE, for: .normal)
+            
+        case pinkButton:
+            
+            ColorState = .pink
+            vcMaAddBtn.setTitleColor(PINK, for: .normal)
+            
+            
+        case redButton:
+            
+            ColorState = .red
+            vcMaAddBtn.setTitleColor(RED, for: .normal)
+            
+            
+        case greenButton:
+            
+            
+            ColorState = .green
+            vcMaAddBtn.setTitleColor(GREEN, for: .normal)
+        
+        default:
+            
+            State = .blue
+            vcMaAddBtn.setTitleColor(BLUE, for: .normal)
+            
+        }
+        
+        counterimage = getMarbleFromColorState(state: ColorState)
+        
+        
+        sender.active = !sender.active
+        
+        print(sender.active)
+        
+        for abutton in buttonArray
+        {
+            if abutton != sender
+            {
+                abutton.active = false
+            }
+            
+        }
+        
+        colorSwitching = self.active
+        
+        
+    }
+    
+    
+    
+    // Not drawing on init since I want to be able to control when the buttons get drawn
+    func drawButtons()
+    {
+        
+        let buttonStep = self.frame.width/6
+        
+        for (index, button) in buttonArray.enumerated()
+        {
+            
+            let y = CGFloat(0)
+            let x = CGFloat(index)*buttonStep
+            
+            let h = self.frame.height/2
+            let w = h
+            
+            self.addSubview(button)
+            
+            button.frame =  CGRect(x: x, y: y, width: w, height: h)
+            
+        }
+        
+    }
+    
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        
+        // Initialization Code
+        
+        blueButton.setImage(blueBtnImage, for: .normal)
+        orangeButton.setImage(orangeBtnImage, for: .normal)
+        purpleButton.setImage(purpleBtnImage, for: .normal)
+        redButton.setImage(redBtnImage, for: .normal)
+        greenButton.setImage(greenBtnImage, for: .normal)
+        pinkButton.setImage(pinkBtnImage, for: .normal)
+        
+        
+        
+        // self.backgroundColor = UIColor.blue
+        
+        blueButton.addTarget(self, action: #selector(colorpicker.buttonPress(sender:)), for: .touchUpInside)
+        orangeButton.addTarget(self, action: #selector(colorpicker.buttonPress(sender:)), for: .touchUpInside)
+        purpleButton.addTarget(self, action: #selector(colorpicker.buttonPress(sender:)), for: .touchUpInside)
+        redButton.addTarget(self, action: #selector(colorpicker.buttonPress(sender:)), for: .touchUpInside)
+        greenButton.addTarget(self, action: #selector(colorpicker.buttonPress(sender:)), for: .touchUpInside)
+        pinkButton.addTarget(self, action: #selector(colorpicker.buttonPress(sender:)), for: .touchUpInside)
+
+        
+        
+        
+        buttonArray = [blueButton,orangeButton,purpleButton,redButton,greenButton,pinkButton]
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        
+        
+        fatalError("init(coder:) has not been implemented")
+        
+        
+    }
+    
+    
+    
+}
+
 
 
 extension UIView

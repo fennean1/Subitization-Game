@@ -99,8 +99,6 @@ class touchableBall: UIImageView {
     
     var originalPlace: CGPoint!
     
-    
-    
     func panhandle(_ sender: UIPanGestureRecognizer)
     {
         
@@ -114,10 +112,6 @@ class touchableBall: UIImageView {
                                   y: view.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: sender.view)
         }
-        
-        
-        
-        
         
         
         if sender.state == .ended
@@ -153,6 +147,8 @@ class touchableBall: UIImageView {
                 
                 var stayedInPlace: Bool {
                     
+                    print("Stayed In Place")
+                    
                     return stayedLeft || stayedRight
                     
                 }
@@ -168,32 +164,30 @@ class touchableBall: UIImageView {
                 }
                 else if (minDistance > r && wentToLeft && a < 10) || (a == BallsInPlay && stayedLeft) {
                     
-                    
-                    
+
                     
                     if b == 0
                     {
-                        
                         let _a = a
                         a = b
                         b = _a
                         
                     }
                     
+
                     a = a + 1
                     b = b - 1
                     
+                    // The balls are currently split.
+                    Split = true
                     
                     let newpoints = decompose(a: a, b: b, frame: NumberShapeFrame.size)
-                    
-                    Split = true
                     
                     let oldIndex = Balls.index(of: self)
                     
                     Balls.insert(self, at: 0)
                     
                     Balls.remove(at: oldIndex!+1)
-                    
                     
                     
                     UIView.animate(withDuration: 0.5, animations: {
@@ -255,15 +249,17 @@ class touchableBall: UIImageView {
                     })
                     
                 }
-                    // If
+                //
                 else if a == 10 || b == 10 || stayedInPlace
                 {
-                    print("One of them was ten and the ball stayed in place")
+                    print("One of them was ten or the ball stayed in place")
                     
                     UIView.animate(withDuration: 0.5, animations: { self.center = self.originalPlace})
                 }
             }
         }
+        // Fix: SHould be something like "Updated Bounced Centers" since it's always operating on the global Balls array.
+        bouncedBallCenters = bounceBallCenters()
         
     }
     
@@ -277,6 +273,8 @@ class touchableBall: UIImageView {
         
         let index = Balls.index(of: self)
         
+        
+        // THIS IS WHERE THE "NUDGING" ERROR COMES FROM.
         originalPlace = Balls[index!].center
         
     }
@@ -349,10 +347,6 @@ func numbershapeviewXY(a: Int, frame: CGSize)-> [CGPoint] {
     return c
     
 }
-
-
-
-
 
 
 

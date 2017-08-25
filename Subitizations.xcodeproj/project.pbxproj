@@ -54,6 +54,9 @@
 		1C86D5561F4675F800CD1328 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5551F4675F800CD1328 /* Protocols.swift */; };
 		1C86D5581F46A24300CD1328 /* NumberShapeForMarbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5571F46A24300CD1328 /* NumberShapeForMarbles.swift */; };
 		1C86D55A1F476D3F00CD1328 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5591F476D3E00CD1328 /* Alerts.swift */; };
+		1C86D55C1F47A10E00CD1328 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D55B1F47A10E00CD1328 /* Const.swift */; };
+		1C86D55E1F48F58500CD1328 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D55D1F48F58500CD1328 /* TestViewController.swift */; };
+		1C86D5611F48F63900CD1328 /* NumberShapesLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C86D5601F48F63900CD1328 /* NumberShapesLibrary.swift */; };
 		1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947731F17BA0400B62F31 /* TableViewCell.swift */; };
 		1CF947761F17BA3600B62F31 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947751F17BA3600B62F31 /* Init.swift */; };
 		1CF947781F17F58700B62F31 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF947771F17F58700B62F31 /* Model.swift */; };
@@ -127,7 +130,7 @@
 		1C86D5381F428E8C00CD1328 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		1C86D53B1F45602B00CD1328 /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		1C86D53D1F4560B900CD1328 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
-		1C86D5401F45645300CD1328 /* TouchableBall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchableBall.swift; sourceTree = "<group>"; };
+		1C86D5401F45645300CD1328 /* TouchableBall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchableBall.swift; path = Subitizations/TouchableBall.swift; sourceTree = "<group>"; };
 		1C86D5421F45E14000CD1328 /* MarbleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarbleViewController.swift; sourceTree = "<group>"; };
 		1C86D5451F45EC8900CD1328 /* PinkThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinkThumbPrint.png; sourceTree = "<group>"; };
 		1C86D5461F45EC8900CD1328 /* OrangeThumbPrint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeThumbPrint.png; sourceTree = "<group>"; };
@@ -140,6 +143,9 @@
 		1C86D5551F4675F800CD1328 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		1C86D5571F46A24300CD1328 /* NumberShapeForMarbles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberShapeForMarbles.swift; sourceTree = "<group>"; };
 		1C86D5591F476D3E00CD1328 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alerts.swift; path = ../Alerts.swift; sourceTree = "<group>"; };
+		1C86D55B1F47A10E00CD1328 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		1C86D55D1F48F58500CD1328 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		1C86D5601F48F63900CD1328 /* NumberShapesLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberShapesLibrary.swift; sourceTree = "<group>"; };
 		1CF947731F17BA0400B62F31 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1CF947751F17BA3600B62F31 /* Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		1CF947771F17F58700B62F31 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 		1C01F2391F16E68A0035621A /* Subitizations */ = {
 			isa = PBXGroup;
 			children = (
+				1C86D55F1F48F5D200CD1328 /* TestingViewController */,
 				1C86D38F1F2308DC00CD1328 /* Game View Controller */,
 				1C86D38E1F2308BA00CD1328 /* Login View Controller */,
 				1C86D5441F45E14700CD1328 /* MarbleViewController */,
@@ -254,7 +261,6 @@
 				1C86D3941F230E5400CD1328 /* ResponseButton.swift */,
 				1C86D4131F32338B00CD1328 /* TrophyButton.swift */,
 				1C86D3961F23D30800CD1328 /* Numbershape.swift */,
-				1C86D5401F45645300CD1328 /* TouchableBall.swift */,
 				1C01F26B1F16E6B30035621A /* Configurations.swift */,
 			);
 			name = "Game View Controller";
@@ -272,6 +278,7 @@
 				1C86D4111F311DCD00CD1328 /* Library.swift */,
 				1C86D53D1F4560B900CD1328 /* ColorPicker.swift */,
 				1C01F26D1F16E88D0035621A /* Convenience.swift */,
+				1C86D55B1F47A10E00CD1328 /* Const.swift */,
 				1C86D3C71F29172300CD1328 /* State.swift */,
 			);
 			name = Global;
@@ -309,8 +316,19 @@
 			children = (
 				1C86D5421F45E14000CD1328 /* MarbleViewController.swift */,
 				1C86D5571F46A24300CD1328 /* NumberShapeForMarbles.swift */,
+				1C86D5401F45645300CD1328 /* TouchableBall.swift */,
 			);
 			name = MarbleViewController;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		1C86D55F1F48F5D200CD1328 /* TestingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1C86D55D1F48F58500CD1328 /* TestViewController.swift */,
+				1C86D5601F48F63900CD1328 /* NumberShapesLibrary.swift */,
+			);
+			name = TestingViewController;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -524,11 +542,13 @@
 				1C86D5541F46749600CD1328 /* GridItem.swift in Sources */,
 				1C86D3971F23D30800CD1328 /* Numbershape.swift in Sources */,
 				1C86D3951F230E5400CD1328 /* ResponseButton.swift in Sources */,
+				1C86D55C1F47A10E00CD1328 /* Const.swift in Sources */,
 				1C86D55A1F476D3F00CD1328 /* Alerts.swift in Sources */,
 				1C01F26E1F16E88D0035621A /* Convenience.swift in Sources */,
 				1C86D5431F45E14000CD1328 /* MarbleViewController.swift in Sources */,
 				1C86D3931F230D2800CD1328 /* Data.swift in Sources */,
 				1CF947761F17BA3600B62F31 /* Init.swift in Sources */,
+				1C86D55E1F48F58500CD1328 /* TestViewController.swift in Sources */,
 				1CF947741F17BA0400B62F31 /* TableViewCell.swift in Sources */,
 				1C86D5391F428E8C00CD1328 /* WelcomeViewController.swift in Sources */,
 				1C86D3C81F29172300CD1328 /* State.swift in Sources */,
@@ -541,6 +561,7 @@
 				1C86D4121F311DCD00CD1328 /* Library.swift in Sources */,
 				1C86D53E1F4560B900CD1328 /* ColorPicker.swift in Sources */,
 				1CF9478B1F19AA8100B62F31 /* LoginViewController.swift in Sources */,
+				1C86D5611F48F63900CD1328 /* NumberShapesLibrary.swift in Sources */,
 				1CF947781F17F58700B62F31 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
