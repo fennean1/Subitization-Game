@@ -12,24 +12,6 @@
 import Foundation
 import UIKit
 
-
-
-
-func initResponseButtons(container: CGRect) {
-    
-    
-    for _ in 1...10
-    {
-        
-        let newButton = responsebutton(frame: container)
-        
-        ResponseButtons.append(newButton)
-        
-    }
-    
-    
-}
-
 func initTrophyButtons(container: CGRect) {
     
     
@@ -125,7 +107,7 @@ func initLevels() -> [Level] {
     
 }
 
-
+// I think this is for the grid...
 func initBalls(number: Int,frame: CGRect) -> [touchableBall]
 {
     

@@ -23,6 +23,8 @@ class responsebutton: UIButton {
         
         let center  = CGPoint(x: self.frame.width/2, y: self.frame.width/2)
         
+        
+        print("resetting marbles before we animate to new thing")
         for marble in marbleViewArray {
             
             marble.frame = CGRect(x: 0, y: 0, width: 0, height: 0)

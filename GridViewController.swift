@@ -9,7 +9,7 @@
 import UIKit
 
 
-
+//
 func initHundredGrid(size: CGFloat) -> [CGPoint] {
     
     var returnThisGrid: [CGPoint] = []
@@ -19,7 +19,6 @@ func initHundredGrid(size: CGFloat) -> [CGPoint] {
         
         for x in 0...9
         {
-            
             
             let newPointX = size*CGFloat(x)
             let newPointY = size*CGFloat(y)
@@ -31,14 +30,13 @@ func initHundredGrid(size: CGFloat) -> [CGPoint] {
         }
         
     }
-    
-    
+
     return returnThisGrid
     
 }
 
 
-var vcGrBackButton = UIButton()
+var vcGrBackBtn = UIButton()
 
 
 class GridViewController: UIViewController {
@@ -73,13 +71,19 @@ class GridViewController: UIViewController {
         
     }
     
+    func goBack(sender: UIButton)
+    {
+        
+        let vc : AnyObject! = self.storyboard!.instantiateViewController(withIdentifier: "WelcomeViewController")
+        
+        self.show(vc as! UIViewController, sender: vc)
+        
+    }
     
     
     
     override func viewDidLoad() {
         
-        
-    
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -92,9 +96,9 @@ class GridViewController: UIViewController {
         BackGround.frame.styleFillContainer(container: view.frame)
         
 
-        view.addSubview(vcGrBackButton)
-        vcGrBackButton.frame.styleBackBtn(view.frame)
-        vcGrBackButton.styleArrowBack()
+        view.addSubview(vcGrBackBtn)
+        vcGrBackBtn.frame.styleBackBtn(view.frame)
+        vcGrBackBtn.styleArrowBack()
         
         var gridPoints = initHundredGrid(size: 55)
         
@@ -115,13 +119,11 @@ class GridViewController: UIViewController {
         
         view.addSubview(colorPicker)
         
-    
+        vcGrBackBtn.addTarget(self, action: #selector(goBack(sender:)), for: .touchUpInside)
+        
 
         
         super.viewDidLoad()
-        
-        
-        
         
         
     }

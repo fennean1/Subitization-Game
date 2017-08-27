@@ -68,20 +68,6 @@ extension CGRect {
         self = CGRect(x: x, y: y, width: w, height: h)
         
     }
-    
-    mutating func styleCenterButton(container: CGRect) {
-        
-
-        let w = container.width/7
-        let h = w/4
-        
-        let x = container.width/2 - w/2
-        let y = container.height - container.width/4
-        
-        
-        self = CGRect(x: x, y: y, width: w, height: h)
-        
-    }
 
 
     mutating func styleFillContainer(container: CGRect) {

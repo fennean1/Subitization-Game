@@ -11,9 +11,6 @@ import UIKit
 
 
 
-
-
-
 class trophybutton: UIButton {
     
     // Level This Trophy Corresponds to

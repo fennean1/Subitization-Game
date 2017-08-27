@@ -14,11 +14,17 @@ var vcGaStartButton = UIButton()
 
 var vcGaNextButton = UIButton()
 
+var vcGaBackBtn = UIButton()
+
+var vcGaDidInit = false
+
 var ScoreLabel: UILabel!
 
+var vcGaCounterImage = PinkBall
 
-// --- Variables local to the PlayViewController
+var vcGaMainMarble = BlueBall
 
+var vcGaAccentMarble = OrangeBall
 
 var dT: CGFloat = 0
 
@@ -34,20 +40,72 @@ var CurrentPlayer: player!
 
 var Attempts = 0
 
-var vcGaCounterImage = PinkBall
+var Time: Double = 0
 
-var vcGaMainMarble = BlueBall
+var TimeElapsed: Double = 0
 
-var vcGaAccentMarble = OrangeBall
+// The number being presented.
+var Argument = 0
 
-var vcGaBackBtn = UIButton()
+// GameViewController Styles
+
+// CGRect
+extension CGRect {
+
+mutating func styleCenterButton(container: CGRect) {
+    
+    
+    let w = container.width/7
+    let h = w/4
+    
+    let x = container.width/2 - w/2
+    let y = container.height - container.width/4
+    
+    
+    self = CGRect(x: x, y: y, width: w, height: h)
+    
+}
+
+}
+
+// UIButton
+
 
 
 class GameViewController: UIViewController {
 
+    
+    
+    
+    
+    var ResponseButtons: [responsebutton] = []
+
+    
     var localTimer = Timer()
     
     var SubmissionTime: Double = 0
+    
+    
+    
+    
+    
+    func initResponseButtons(container: CGRect) {
+        
+        
+        for _ in 1...10
+        {
+            
+            let newButton = responsebutton(frame: container)
+            
+            ResponseButtons.append(newButton)
+            
+        }
+        
+        
+    }
+    
+
+    
     
     func startGame(sender: UIButton)
     {
@@ -56,6 +114,11 @@ class GameViewController: UIViewController {
             trophy.setImage(nil, for: .normal)
         }
         
+        // Drawing the buttons (because they get rendered each turn.
+        for (index,button) in ResponseButtons.enumerated()
+        {
+            button.drawNumber(n: index + 1)
+        }
         
         // Create new player
         CurrentPlayer = player()
@@ -74,6 +137,51 @@ class GameViewController: UIViewController {
         
     }
     
+    
+    func vcGaReset() {
+        
+        
+        
+        
+        
+    }
+    
+    func goBack(sender: UIButton) {
+        
+        print("Resetting the game variables")
+
+        dT = 0
+        
+        Cycler = 0
+        
+        GameOver = false
+        
+        CurrentLevel = Levels[0]
+        
+        Attempts = 0
+        
+        Time = 0
+        
+        Marbles = []
+        
+        TimeElapsed = 0
+        
+        centers = []
+        
+        ResponseButtons = []
+        
+        Argument = 0
+        
+        CurrentPlayer.Playing = false
+        
+        print("Going back to WelcomeViewController")
+        
+        let vc : AnyObject! = self.storyboard!.instantiateViewController(withIdentifier: "WelcomeViewController")
+        
+        self.show(vc as! UIViewController, sender: vc)
+        
+    }
+    
     func presentNewProblem() -> Bool
     {
     
@@ -81,6 +189,8 @@ class GameViewController: UIViewController {
         print("Getting new problem from the current level...")
         print("Number of Problems Left = ",CurrentLevel.problemSet.count)
         
+        
+        // Returns zero if there are no more questions.
         Argument = pluckProblemFromCurrentLevel()
         
 
@@ -100,11 +210,8 @@ class GameViewController: UIViewController {
         dT = 0
         
      
-        // Drawing the buttons (because they get rendered each turn.
-        for (index,button) in ResponseButtons.enumerated()
-        {
-            button.drawNumber(n: index + 1)
-        }
+ 
+
         
         drawConfiguration(value: Argument, at: view.center, marbles: Marbles, ballimage: MainMarble, marblesize: 50)
      
@@ -131,8 +238,7 @@ class GameViewController: UIViewController {
     func nextProblem(sender: UIButton)
     {
         
-        
-        // Set the time elapsed back to what it was when the answer was submitted.
+        // Check to see if presentNewProblem() returns true.
         guard presentNewProblem() == true else {
             
             // ENDING GAME
@@ -287,7 +393,6 @@ class GameViewController: UIViewController {
     func pickLevel(sender: trophybutton) {
         
         
-        
        /* print("Picking level",sender.level)
         
         CurrentLevel = Levels[sender.level]
@@ -341,8 +446,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        
-        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -351,12 +454,21 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
      
+
         view.addSubview(BackGround)
         BackGround.image = UIImage(named: "Clouds")
         BackGround.frame.styleFillContainer(container: view.frame)
 
 
         initMarbles(n: 10)
+        
+        
+        ResponseButtons = []
+        
+        initResponseButtons(container: DefaultFrame)
+        
+        initTrophyButtons(container: DefaultFrame)
+        
         
 
         // Add the marbles to the superview
@@ -366,10 +478,9 @@ class GameViewController: UIViewController {
             view.addSubview(marble)
             
         }
-        
-        initResponseButtons(container: DefaultFrame)
-        initTrophyButtons(container: DefaultFrame)
-        
+      
+
+  
         let responseButtonFrames = getResponseButtonFrames(n: NumberOfButtons, container: view.frame)
         let trophyButtonFrames = getTrophyButtonFrames(n: NumberOfTrophies, container: view.frame)
         
@@ -377,22 +488,20 @@ class GameViewController: UIViewController {
         for (index,_) in TrophyButtons.enumerated()
         {
             
-            
             if index < trophyButtonFrames.count
             {
-                
-                
+    
                 TrophyButtons[index].frame = trophyButtonFrames[index]
                 view.addSubview(TrophyButtons[index])
                 // TrophyButtons[index].setImage(EmptyTrophy, for: .normal)
                 TrophyButtons[index].addTarget(self, action: #selector(pickLevel(sender:)), for: .touchUpInside)
                 
-                
             }
             
         }
         
-        // Initialize all the response buttons.
+
+        // Draw all the response buttons.
         for (index,_) in ResponseButtons.enumerated()
         {
             
@@ -400,8 +509,6 @@ class GameViewController: UIViewController {
             if index < responseButtonFrames.count
             {
     
-            
-                // ResponseButtons[index].backgroundColor = UIColor.blue
                 ResponseButtons[index]._n = index
                 ResponseButtons[index].frame = responseButtonFrames[index]
                 view.addSubview(ResponseButtons[index])
@@ -411,37 +518,40 @@ class GameViewController: UIViewController {
             }
        
         }
-
+         
+  
         
         // Probably can remove this too.
         Levels = initLevels()
         
         initScoreLabel(container: view.frame)
         
+        // Style Frames
         vcGaStartButton.frame.styleCenterButton(container: view.frame)
         vcGaNextButton.frame.styleCenterButton(container: view.frame)
         vcGaNextButton.frame.styleHideTopLeft(hide: vcGaNextButton.frame)
+        vcGaBackBtn.frame.styleBackBtn(view.frame)
       
+        
+        // Add to superview
         view.addSubview(vcGaNextButton)
         view.addSubview(vcGaStartButton)
         view.addSubview(ScoreLabel)
+        view.addSubview(vcGaBackBtn)
+        view.addSubview(Modal)
+
         
+        // Style Objects
+        vcGaBackBtn.styleArrowBack()
         vcGaNextButton.styleChalkRect(text: "Next->")
         vcGaStartButton.styleChalkRect(text: "Start")
         
         
-        
         vcGaStartButton.addTarget(self, action: #selector(startGame(sender:)), for: .touchUpInside)
         vcGaNextButton.addTarget(self, action: #selector(nextProblem(sender:)), for: .touchUpInside)
+        vcGaBackBtn.addTarget(self, action: #selector(goBack(sender:)), for: .touchUpInside)
         
         
-        view.addSubview(Modal)
-        
-        view.addSubview(vcGaBackBtn)
-        vcGaBackBtn.frame.styleBackBtn(view.frame)
-        vcGaBackBtn.styleArrowBack()
-        
-           
 
     }
 
