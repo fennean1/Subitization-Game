@@ -17,25 +17,19 @@ class responsebutton: UIButton {
 
     var marbleViewArray: [UIImageView] = []
     
-    func drawNumber(n: Int) {
+    func drawNumber(n: Int,image: UIImage) {
    
         _n = n
         
         let center  = CGPoint(x: self.frame.width/2, y: self.frame.width/2)
-        
-        
-        print("resetting marbles before we animate to new thing")
-        for marble in marbleViewArray {
-            
-            marble.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-            
-        }
+    
         
         // About to draw number shape 
-        drawNumberShape(value: n, at: center, marbles: marbleViewArray, ballimage: vcGaCounterImage, marblesize: self.frame.width/5)
+        drawNumberShape(value: n, at: center, marbles: marbleViewArray, ballimage: image, marblesize: self.frame.width/5)
         
         
     }
+    
     
     
     override init(frame: CGRect) {
@@ -55,6 +49,13 @@ class responsebutton: UIButton {
             
         }
         
+        
+        print("resetting marbles before we animate to new thing")
+        for marble in marbleViewArray {
+            
+            marble.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            
+        }
    
     }
     

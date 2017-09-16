@@ -296,19 +296,15 @@ func calculateScore(dT: CGFloat,number: Int,attempts: Int) -> Int {
     
     var score: CGFloat = 0
     
-    score = 200/(sqrt(dT + 1 + CGFloat(attempts)))
-    
-    //var difficultyModifier = CGFloat(2 + number)
-    
-    //difficultyModifier = sqrt(difficultyModifier)
-    
-    //score = score*difficultyModifier
+    // Adjusted to increase penalty for wrong answer.
+    score = 200/(sqrt(dT + 1 + 1.5*CGFloat(attempts)))
+
     
     return Int(score)
     
 }
 
-
+// Multiplies a point by a scalar as if it were a vector.
 func scalePoints(factor: CGFloat,vector: CGPoint) -> CGPoint {
     
     let x = factor*vector.x
@@ -346,18 +342,6 @@ func bouncePoints(points: [CGPoint],center: CGPoint) -> [CGPoint] {
     
 }
 
-
-
-
-
-// Pre - Set Colors
-
-func rgbColor(Red: Int,Green: Int, Blue: Int, Alpha: CGFloat) -> UIColor
-{
-    
-    return UIColor(red: CGFloat(Red/255) ,green: CGFloat(Green/255),blue: CGFloat(Blue/255) ,alpha: Alpha)
-    
-}
 
 
 

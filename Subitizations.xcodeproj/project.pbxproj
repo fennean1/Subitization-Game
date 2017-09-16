@@ -261,6 +261,7 @@
 				1C86D3941F230E5400CD1328 /* ResponseButton.swift */,
 				1C86D4131F32338B00CD1328 /* TrophyButton.swift */,
 				1C86D3961F23D30800CD1328 /* Numbershape.swift */,
+				1C86D3C51F282F2500CD1328 /* Levels.swift */,
 				1C01F26B1F16E6B30035621A /* Configurations.swift */,
 			);
 			name = "Game View Controller";
@@ -273,7 +274,6 @@
 				1CF947801F19A18900B62F31 /* Styles.swift */,
 				1CF947751F17BA3600B62F31 /* Init.swift */,
 				1CF947771F17F58700B62F31 /* Model.swift */,
-				1C86D3C51F282F2500CD1328 /* Levels.swift */,
 				1C86D5551F4675F800CD1328 /* Protocols.swift */,
 				1C86D4111F311DCD00CD1328 /* Library.swift */,
 				1C86D53D1F4560B900CD1328 /* ColorPicker.swift */,

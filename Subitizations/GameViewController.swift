@@ -8,7 +8,7 @@
 
 import UIKit
 
-// --- UI elements local to the PlayViewController
+// --- UI Elements ---
 
 var vcGaStartButton = UIButton()
 
@@ -16,6 +16,7 @@ var vcGaNextButton = UIButton()
 
 var vcGaBackBtn = UIButton()
 
+// For whether or not a game has been started with vc Exits. Should be removed eventually.
 var vcGaDidInit = false
 
 var ScoreLabel: UILabel!
@@ -26,28 +27,36 @@ var vcGaMainMarble = BlueBall
 
 var vcGaAccentMarble = OrangeBall
 
+// Legacy - Needs to adopt namespace vcGa(VariableName)
 var dT: CGFloat = 0
 
-var Cycler = 0
+// The two marbles that will be used in a given turn. User can choose these at the beginning of the game and may change them between turns.
+var MainMarble = BlueBall
+
+var AccentMarble = OrangeBall
 
 var GameOver = false
 
-var CurrentLevel = Levels[0]
+// Theoretically, there should be multiple levels. A level just stores the numbers that will be displayed in that level. That's why right now the "Current Level" is just 3 of each number. These numbers are presented randomely.
+var CurrentLevel = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
 
+// A modal that lets the player know when the game is over and displays performance data.
 var Modal = modalview()
 
+// Created with the notion that there would be multiple players. I'm sidelining that feature for the first release.
 var CurrentPlayer: player!
 
 var Attempts = 0
 
-var Time: Double = 0
+var currentTime: Double = 0
+var timeOfTurnStart: Double = 0
 
 var TimeElapsed: Double = 0
 
 // The number being presented.
 var Argument = 0
 
-// GameViewController Styles
+// --- Styles ---
 
 // CGRect
 extension CGRect {
@@ -64,33 +73,85 @@ mutating func styleCenterButton(container: CGRect) {
     
     self = CGRect(x: x, y: y, width: w, height: h)
     
-}
+
+    }
 
 }
 
-// UIButton
 
+
+
+
+func initScoreLabel(container: CGRect)
+{
+    
+    ScoreLabel = UILabel()
+    
+    ScoreLabel.frame.styleScoreLabel(container: container)
+    ScoreLabel.font = UIFont(name: "ChalkBoard SE", size: 70)
+    ScoreLabel.textAlignment = .center
+    
+}
+
+
+// USE DID SET TO MAKE SURE THAT DEPENDENCIES GET PROPAGATED
 
 
 class GameViewController: UIViewController {
-
     
     
     
+    @IBOutlet weak var timeTracker: UILabel!
     
-    var ResponseButtons: [responsebutton] = []
-
     
     var localTimer = Timer()
+
     
-    var SubmissionTime: Double = 0
+    // Array of marbles that get displayed during the game
+    var Marbles: [marble] = []
     
+    var ResponseButtons: [responsebutton] = []
     
+  
+
+    var vcGaTrophyButtons: [trophybutton] = []
+
     
-    
+    // When accented marblles are updated, update
+    var vcGaAccentedMarbles: Int = 0 {
+        
+        didSet(newValue) {
+            
+            for (i,b) in ResponseButtons.enumerated()
+            {
+            
+                ResponseButtons[newValue].drawNumber(n: newValue, image: vcGaAccentMarble)
+                
+            }
+        }
+        
+        
+    }
+
+    // Initialization
+    func initTrophyButtons(container: CGRect) {
+        
+        
+        for index in 0...9
+        {
+            
+            let newButton = trophybutton()
+            
+            newButton.level = index
+            
+            vcGaTrophyButtons.append(newButton)
+            
+        }
+        
+        
+    }
     
     func initResponseButtons(container: CGRect) {
-        
         
         for _ in 1...10
         {
@@ -101,15 +162,12 @@ class GameViewController: UIViewController {
             
         }
         
-        
     }
-    
 
-    
     
     func startGame(sender: UIButton)
     {
-        for trophy in TrophyButtons
+        for trophy in vcGaTrophyButtons
         {
             trophy.setImage(nil, for: .normal)
         }
@@ -117,19 +175,18 @@ class GameViewController: UIViewController {
         // Drawing the buttons (because they get rendered each turn.
         for (index,button) in ResponseButtons.enumerated()
         {
-            button.drawNumber(n: index + 1)
+            button.drawNumber(n: index + 1, image: vcGaMainMarble)
         }
         
         // Create new player
         CurrentPlayer = player()
-        CurrentPlayer.myCurrentLevel = Levels[0]
-        CurrentPlayer.Playing = true
+        CurrentPlayer.playing = true
         CurrentPlayer.initPerformanceDataContext()
+        print("The new player's performance data context has been set to:",CurrentPlayer.myPerformanceData)
         Attempts = 0
+     
         
-        
-        localTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: (#selector(GameViewController.updateTimer)), userInfo: nil, repeats: true)
-        
+        // Returns a value but
         _ = presentNewProblem()
     
         // Hide the start button
@@ -138,29 +195,19 @@ class GameViewController: UIViewController {
     }
     
     
-    func vcGaReset() {
-        
-        
-        
-        
-        
-    }
     
     func goBack(sender: UIButton) {
         
         print("Resetting the game variables")
 
-        dT = 0
-        
-        Cycler = 0
         
         GameOver = false
         
-        CurrentLevel = Levels[0]
-        
         Attempts = 0
         
-        Time = 0
+        currentTime = 0
+        timeOfTurnStart = 0
+    
         
         Marbles = []
         
@@ -172,7 +219,13 @@ class GameViewController: UIViewController {
         
         Argument = 0
         
-        CurrentPlayer.Playing = false
+        // Numbers get plucked away from the level during the game, that's why they must be replaced upon exit.
+        CurrentLevel = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
+        
+        CurrentPlayer.playing = false
+        
+        localTimer.invalidate()
+
         
         print("Going back to WelcomeViewController")
         
@@ -184,11 +237,6 @@ class GameViewController: UIViewController {
     
     func presentNewProblem() -> Bool
     {
-    
-        // Returns zero if the current level is out of questions.
-        print("Getting new problem from the current level...")
-        print("Number of Problems Left = ",CurrentLevel.problemSet.count)
-        
         
         // Returns zero if there are no more questions.
         Argument = pluckProblemFromCurrentLevel()
@@ -206,53 +254,39 @@ class GameViewController: UIViewController {
 
         // Player is currently 
         print("Player is currently solving a problem...")
-        CurrentPlayer.Playing = true
-        dT = 0
-        
-     
- 
+        CurrentPlayer.playing = true
 
         
+    
         drawConfiguration(value: Argument, at: view.center, marbles: Marbles, ballimage: MainMarble, marblesize: 50)
-     
-        
-        Cycler += 1
+    
 
-        
         return true
         
     }
     
     func updateTimer()
     {
-        
-        if CurrentPlayer.Playing == true
-        {
-            dT = dT + 0.01
-        }
-        
-        
+        currentTime += 0.01
+        timeTracker.text = "\(currentTime)"
     }
     
     
     func nextProblem(sender: UIButton)
     {
         
-        // Check to see if presentNewProblem() returns true.
+        // Check to see if presentNewProblem() returns true. This actually calls presentNewProblem.
         guard presentNewProblem() == true else {
             
             // ENDING GAME
             print("presentNewProblem has returned false and the game is over.")
-            CurrentPlayer.Playing = false
+            CurrentPlayer.playing = false
            
             
             // ACTION: Need to present the user with options on how to proceed once the game has concluded. Could use Modal defined in "Library"
             
             
             // Reset The level
-           
-            CurrentLevel = Levels[0]
-            
             CurrentPlayer.initPerformanceDataContext()
             
             let earnedTrophy = trophy(percentage: Score/Normalizer)!
@@ -262,7 +296,7 @@ class GameViewController: UIViewController {
             
             
             // Need to re - write modal so it can handle next user action. 
-            Modal.drop(earnedTrophy, messege: "Level \(CurrentPlayer.myCurrentLevel.index+1) Complete!")
+            Modal.drop(earnedTrophy, messege: "Score: \(Score)")
             
             vcGaStartButton.frame.styleCenterButton(container: self.view.frame)
             
@@ -270,7 +304,9 @@ class GameViewController: UIViewController {
             
         }
         
-        CurrentPlayer.Playing = true
+        timeOfTurnStart = currentTime
+        
+        CurrentPlayer.playing = true
         
         hide(view: vcGaNextButton)
         
@@ -284,8 +320,7 @@ class GameViewController: UIViewController {
         
         
         // If the player isn't playing then nothing should happen when these buttons are pressed. We used the Bool "Playing" state so we don't have to disable each button everytime we don't want them to respond.
-        guard CurrentPlayer.Playing == true else {
-            
+        guard CurrentPlayer.playing == true else {
             
             print("Shouldn't be able to press me!")
             
@@ -293,13 +328,12 @@ class GameViewController: UIViewController {
             
         }
         
-        Attempts += 1
-  
-        // TimerLabel.text = "\(Int(60 - SubmissionTime))"
-
+    
+        
         ScoreLabel.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-     
+        print("The score label frame has been set to RectZero prior to animation")
   
+        
         let originalCenters = Marbles.map({$0.center})
         
         
@@ -309,29 +343,33 @@ class GameViewController: UIViewController {
         // sender._n? why did I name that _n?
         if sender._n == Argument {
             
-            Attempts = 0
-            
-            CurrentPlayer.Playing = false
-            
-            let score = calculateScore(dT: dT,number: Argument,attempts: Attempts)
+            dT = CGFloat(currentTime - timeOfTurnStart)
+    
+            CurrentPlayer.playing = false
+            print("The current player is no longer in the Playing state and must press Next to go to the next turn")
 
-            Score = Score + CGFloat(score)
+            print("It took you:",dT,"seconds")
+            let newScore = calculateScore(dT: dT,number: Argument,attempts: Attempts)
+            print("The new score has been calculated:",newScore,"Points")
+            
+            Attempts = 0
+            print("The correct answer has been received and the number of attempts have been set back to:",Attempts)
+            
+
+            Score = Score + CGFloat(newScore)
             
             // Present feedback
-            ScoreLabel.text = "\(Int(score)) Points!"
+            ScoreLabel.text = "\(Int(newScore)) Points!"
             
-            print("The current level is",CurrentLevel.index)
+            CurrentPlayer.updatePerfomanceDataFor(n: Argument, with: CGFloat(newScore))
             
-            CurrentPlayer.updatePerfomanceDataFor(n: Argument, with: CGFloat(score))
+            // Need to update score
+            vcGaTrophyButtons[Argument-1].updateTrophy(percentage: CurrentPlayer.myPerformanceData[Argument-1].1/Normalizer)
             
-            TrophyButtons[Argument-1].updateTrophy(percentage: CurrentPlayer.myPerformanceData[Argument-1].1/Normalizer)
-            
-            UIView.animate(withDuration: 0.4, animations: {ScoreLabel.frame.styleScoreLabel(container: self.view.frame)},completion: {finished in
-                
-            })
+            UIView.animate(withDuration: 0.4, animations: {ScoreLabel.frame.styleScoreLabel(container: self.view.frame)},completion: {finished in })
             
             
-            // Present "Next" Button
+            // Creates a timer that does not repeat Present "Next" Button
             let _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: (#selector(presentNextButton)), userInfo: nil, repeats: false)
             
             
@@ -344,11 +382,13 @@ class GameViewController: UIViewController {
         else {
             
 
-
+            Attempts += 1
+            print("A new attempt has been recorded and the total count is now:",Attempts)
+            
             
             UIView.animate(withDuration: 0.3, animations: {
                 
-                for (j,m) in Marbles.enumerated()
+                for (j,m) in self.Marbles.enumerated()
                 {
                     
                     m.center = bouncedCenters[j]
@@ -359,7 +399,6 @@ class GameViewController: UIViewController {
                 
             },
             completion: {finished in
-                
 
              
             UIView.animate(withDuration: 0.3, animations: {
@@ -367,7 +406,7 @@ class GameViewController: UIViewController {
                     print("Animating to original centers",originalCenters)
                     
                     
-                    for (i,m) in Marbles.enumerated()
+                    for (i,m) in self.Marbles.enumerated()
                     {
                         m.center = originalCenters[i]
                     }
@@ -386,30 +425,15 @@ class GameViewController: UIViewController {
             
         }
      
-        
+        print("The players performance data is",CurrentPlayer.myPerformanceData)
  
-    }
-    
-    func pickLevel(sender: trophybutton) {
-        
-        
-       /* print("Picking level",sender.level)
-        
-        CurrentLevel = Levels[sender.level]
-        
-        GameOver = false
-        
-        UIView.animate(withDuration: 0.5, animations: {StartButton.frame.styleCenterButton(container: self.view.frame)})
-      */
-        
-        
     }
     
     
     func presentNextButton()
     {
         
-        if CurrentPlayer.Playing == false
+        if CurrentPlayer.playing == false
         {
         
         vcGaNextButton.center = CGPoint(x: view.frame.width/2, y: 1.2*view.frame.height)
@@ -426,7 +450,7 @@ class GameViewController: UIViewController {
     func pluckProblemFromCurrentLevel() -> Int {
         
     
-        guard CurrentPlayer.myCurrentLevel.problemSet.count > 0 else {
+        guard CurrentLevel.count > 0 else {
             
             print("No more problems in this level")
             
@@ -434,11 +458,11 @@ class GameViewController: UIViewController {
             
         }
         
-        let rand = Int(arc4random_uniform(UInt32(CurrentPlayer.myCurrentLevel.problemSet.count)))
+        let rand = Int(arc4random_uniform(UInt32(CurrentLevel.count)))
         
-        let returnThis = CurrentPlayer.myCurrentLevel.problemSet[rand]
+        let returnThis = CurrentLevel[rand]
         
-        CurrentPlayer.myCurrentLevel.problemSet.remove(at: rand)
+        CurrentLevel.remove(at: rand)
         
         return returnThis
         
@@ -451,17 +475,35 @@ class GameViewController: UIViewController {
     }
     
     
+    // Initializes the marble array (currently always n = 10...but you never know.)
+    func initMarbles(n: Int) {
+        
+        for _ in 1...n
+        {
+            
+            let newMarble = marble(frame: DefaultFrame)
+            
+            newMarble.frame.size = CGSize(width: BallSize, height: BallSize)
+            
+            Marbles.append(newMarble)
+            
+        }
+        
+        
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         
-     
-
+    
+        localTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: (#selector(GameViewController.updateTimer)), userInfo: nil, repeats: true)
+        
+        
         view.addSubview(BackGround)
         BackGround.image = UIImage(named: "Clouds")
         BackGround.frame.styleFillContainer(container: view.frame)
-
-
-        initMarbles(n: 10)
         
+        initMarbles(n: 10)
         
         ResponseButtons = []
         
@@ -470,7 +512,6 @@ class GameViewController: UIViewController {
         initTrophyButtons(container: DefaultFrame)
         
         
-
         // Add the marbles to the superview
         for marble in Marbles{
             
@@ -484,17 +525,15 @@ class GameViewController: UIViewController {
         let responseButtonFrames = getResponseButtonFrames(n: NumberOfButtons, container: view.frame)
         let trophyButtonFrames = getTrophyButtonFrames(n: NumberOfTrophies, container: view.frame)
         
-        // Initialize all the response buttons.
-        for (index,_) in TrophyButtons.enumerated()
+        // Initialize all the trophy buttons
+        for (index,_) in vcGaTrophyButtons.enumerated()
         {
             
             if index < trophyButtonFrames.count
             {
     
-                TrophyButtons[index].frame = trophyButtonFrames[index]
-                view.addSubview(TrophyButtons[index])
-                // TrophyButtons[index].setImage(EmptyTrophy, for: .normal)
-                TrophyButtons[index].addTarget(self, action: #selector(pickLevel(sender:)), for: .touchUpInside)
+                vcGaTrophyButtons[index].frame = trophyButtonFrames[index]
+                view.addSubview(vcGaTrophyButtons[index])
                 
             }
             
@@ -519,10 +558,7 @@ class GameViewController: UIViewController {
        
         }
          
-  
-        
-        // Probably can remove this too.
-        Levels = initLevels()
+
         
         initScoreLabel(container: view.frame)
         
@@ -551,6 +587,10 @@ class GameViewController: UIViewController {
         vcGaNextButton.addTarget(self, action: #selector(nextProblem(sender:)), for: .touchUpInside)
         vcGaBackBtn.addTarget(self, action: #selector(goBack(sender:)), for: .touchUpInside)
         
+        
+        print("Time of Turn Start",timeOfTurnStart)
+        
+         view.bringSubview(toFront: timeTracker)
         
 
     }

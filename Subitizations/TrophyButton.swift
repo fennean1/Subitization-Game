@@ -13,7 +13,7 @@ import UIKit
 
 class trophybutton: UIButton {
     
-    // Level This Trophy Corresponds to
+    // Level This Trophy Corresponds to. We're only dealing with one level so this is irrelevent at the moment.
     var level = 0
     
 

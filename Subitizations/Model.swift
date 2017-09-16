@@ -15,18 +15,9 @@ var BackGround = UIImageView()
 
 var ColorState = colorstate.blue
 
-// Array of marbles that get displayed during the game
-var Marbles: [marble] = []
-
 // The array of points that represent the marble centers
 var MarbleCenters: [CGPoint] = []
 
-
-// The two marbles that will be used in a given turn. User can choose these at the beginning of the game and may change them between turns.
-var MainMarble = BlueBall
-var AccentMarble = OrangeBall
-
-var TrophyButtons: [trophybutton] = []
 
 var Countdown: Float = 60
 

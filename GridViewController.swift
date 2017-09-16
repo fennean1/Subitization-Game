@@ -9,13 +9,19 @@
 import UIKit
 
 
-//
+
+// --- Grid Model ----
+
+var vcGrModelGrid: [griditem] = []
+
+
+
+// This is okay. If I'm initializing an array, it's best to receive it from a pure function.
 func initHundredGrid(size: CGFloat) -> [CGPoint] {
     
     var returnThisGrid: [CGPoint] = []
     
     for y in 0...9 {
-        
         
         for x in 0...9
         {
@@ -36,16 +42,13 @@ func initHundredGrid(size: CGFloat) -> [CGPoint] {
 }
 
 
-var vcGrBackBtn = UIButton()
-
-
 class GridViewController: UIViewController {
     
+    var vcGrBackBtn = UIButton()
     
     var colorPicker = colorpicker()
     
-    
-    func drawElements(image: UIImage, at: [CGPoint],size: CGFloat)
+    func drawGridItems(image: UIImage, at: [CGPoint],size: CGFloat)
     {
         
         var imageView: [griditem] = []
@@ -84,7 +87,6 @@ class GridViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        
         // Do any additional setup after loading the view, typically from a nib.
         
     }
@@ -110,8 +112,7 @@ class GridViewController: UIViewController {
         
         gridPoints = gridPoints.map({addPoints(a: $0, b: meshOffset)})
         
-        drawElements(image: PinkBall, at: gridPoints, size: 55)
-        
+        drawGridItems(image: PinkBall, at: gridPoints, size: 55)
         
         colorPicker.colorpickerStyle(frame: view.frame)
         

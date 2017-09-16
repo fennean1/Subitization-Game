@@ -18,19 +18,8 @@ class player {
     
     // Performance data lasts the lifetime of a game
     var myPerformanceData: [(Int,CGFloat,Int)] = [(1,0,0),(2,0,0),(3,0,0),(4,0,0),(5,0,0),(6,0,0),(7,0,0),(8,0,0),(9,0,0),(10,0,0)]
-    
-    var myCurrentLevel = Level()
-    
-    var myLevels: [Level] = []
 
-    var Playing = false
-    
-    func makeMyLevels()
-    {
-        myLevels = initLevels()
-        
-    }
-    
+    var playing = false
     
     // So that performance data can be reinitialized each game.
     func initPerformanceDataContext() {
@@ -41,7 +30,7 @@ class player {
         {
             let newTuple: (Int,CGFloat,Int)!
             
-             newTuple = (index+1,CGFloat(index),index)
+             newTuple = (index+1,0,0)
             
             myPerformanceData.append(newTuple)
         }
@@ -52,19 +41,6 @@ class player {
     // Still working on the algorithm for calculating performance data.
     func updatePerfomanceDataFor(n: Int,with: CGFloat)
     {
-        /*
-        if myPerformanceData[n-1].1 == 0
-        {
-            myPerformanceData[n-1].1 = with
-        }
-        else{
-        
-            let newScore = (myPerformanceData[n-1].1+with)/2
-        
-            myPerformanceData[n-1].1 = newScore
-        }
- 
-         */
         
         myPerformanceData[n-1].1 += with
         
@@ -73,32 +49,6 @@ class player {
     
 }
 
-class game {
-    
-    var Levels: [Level] = []
-
-}
-
-
-//
-struct Level {
-    
-    var index = 0
-    var score = 0
-    var problemSet: [Int] = []
-    var difficulty: CGFloat = 0
-    
-    func getDifficulty(level: [Int]) -> Int
-    {
-        
-        return level.reduce(0,+)
-        
-    }
-    
-}
-
-
-var Levels: [Level] = []
 
 
 func trophy(percentage: CGFloat) -> UIImage?

@@ -11,7 +11,6 @@ import UIKit
 
 
 
-
 class griditem: UIImageView
 {
     
@@ -38,7 +37,6 @@ class griditem: UIImageView
         }
         
     }
-    
     
     // Inits
     required init(coder aDecoder: NSCoder)

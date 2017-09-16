@@ -52,6 +52,18 @@ func bounceBallCenters() -> [CGPoint] {
     
 }
 
+func initOriginalCoordinates()
+{
+    
+    for _ in 0...19
+    {
+        originalCoordinates.append(CGPoint(x: 0, y: 0))
+    }
+    
+}
+
+
+
 
 
 class MarbleViewController: UIViewController {

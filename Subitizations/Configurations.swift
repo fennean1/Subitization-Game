@@ -5,10 +5,6 @@ import Foundation
 import UIKit
 
 
-
-// Testing variable, used for analysis.
-var FINALNODES: [CGPoint] = []
-
 var r: CGFloat!
 
 var centers: [CGPoint] = []
