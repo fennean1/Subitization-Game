@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 
-
 class griditem: UIImageView
 {
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         

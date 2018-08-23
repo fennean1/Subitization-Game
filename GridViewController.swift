@@ -123,7 +123,6 @@ class GridViewController: UIViewController {
         vcGrBackBtn.addTarget(self, action: #selector(goBack(sender:)), for: .touchUpInside)
         
 
-        
         super.viewDidLoad()
         
         

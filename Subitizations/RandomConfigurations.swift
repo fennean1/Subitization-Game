@@ -10,15 +10,18 @@ var r: CGFloat!
 var centers: [CGPoint] = []
 
 var ConfigurationNodes: [CGPoint] = []
-
 class marble: UIImageView
 {
     
-    var mySpot = CGPoint(x: 0, y: 0)
+    var mySpot = CGPoint()
     
+    var x = "4"
+    
+
     func panhandler(_ sender: UIPanGestureRecognizer)
     {
         
+        let y = Int(x)
         
         if sender.state == .changed
         {
@@ -70,7 +73,12 @@ func drawConfiguration(value: Int, at: CGPoint, marbles: [UIImageView], ballimag
         
         centers = buildnumber(n: value, r: marblesize/2)
     
-        
+        print("Count of centers before the number is drawn", centers.count)
+    
+        print("REMOVING DUPLICATES FROM CENTERS")
+    
+        print("Count of centers after removal",removeDuplicateNodes(nodes: centers).count)
+    
         let figureOffset = getOffsetForConfiguration(points: centers,r: marblesize/2)
 
         let combinedOffset = addPoints(a: at, b: figureOffset)
@@ -121,28 +129,51 @@ func buildnumber(n: Int,r: CGFloat) -> [CGPoint]
         
         for _ in 0...n-2 {
             
-            
+            // Gets all available spots where a ball could be placed.
             var newNodes = getNodes(r: r, points: centers)
-      
-            
-            // Remove any nodes that are currently centers
-            newNodes = newNodes.filter({!centers.contains($0)})
-            
         
             
-            // Remove duplicate nodes
-            var newNodesNoDuplicates = removeDuplicateNodes(nodes: newNodes)
-            
+            // This is not working consistently to remove nodes that are already in the centers array.
+            // newNodes = newNodes.filter({!centers.contains($0)})
 
-            newNodesNoDuplicates = removeDuplicateNodes(nodes: newNodesNoDuplicates)
-    
+            print("New Nodes Count",newNodes.count)
+            for (i,nVal) in newNodes.enumerated()
+            {
+                for cVal in centers {
+                    // Comparing CG points based on how far away they are instead of exact value.
+                    if compareCGPoints(a: cVal, b: nVal) == true
+                    {
+                        let j = newNodes.index(of: nVal)!
+                        print(j)
+                        newNodes.remove(at: j)
+                    }
+                }
+            }
             
             
-            let randomNode = newNodesNoDuplicates.randomItem()
+            // Remove duplicate nodes
+            let newNodesNoDuplicates = removeDuplicateNodes(nodes: newNodes)
+
             
+            var randomNode = newNodesNoDuplicates.randomItem()
+            print("This is the random node:",randomNode)
+            print("These are the centers that should NOT contain the random node:",centers)
+            
+            print("IS THE node already in the centers?",centers.contains{$0 == randomNode})
+        
+            
+            print("This is the centers before appending the new node",centers)
+            
+            // Add they new node to the random centers.
             centers.append(randomNode)
+        
+            print("FILTERING CENTERS AFTER APPENDING NEW NODE")
+            let x = removeDuplicateNodes(nodes: centers)
+            
        
             
+
+       
         }}
     
 
@@ -152,6 +183,10 @@ func buildnumber(n: Int,r: CGFloat) -> [CGPoint]
     
 }
 
-
+extension Array {
+    func contains<T>(obj: T) -> Bool where T : Equatable {
+        return self.filter({$0 as? T == obj}).count > 0
+    }
+}
 
 

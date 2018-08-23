@@ -13,6 +13,7 @@ var BallSize: CGFloat = 50
 
 var BackGround = UIImageView()
 
+
 var ColorState = colorstate.blue
 
 // The array of points that represent the marble centers
@@ -27,21 +28,18 @@ var NumberOfTrophies = 10
 // Number of response buttons that are displayed.  I think this will always be ten but made room for the possibility that the number of response buttons may vary.
 var NumberOfButtons = 10
 
-// This variable should only last for the lifetime of the player.
-var Score: CGFloat = 0
 
 var Toggler = 0
 
 var BallDim: CGFloat = 0
-
-// Initialize counter
-var counter = UIImage(named: "PurpleBall")
 
 var centerOfScreen: CGPoint!
 
 let BallArray = [BlueBall,OrangeBall,RedBall,GreenBall,PinkBall,PurpleBall]
 
 var colorSwitching = false
+
+var x: String = "0"
 
 var counterimage = BlueBall
 

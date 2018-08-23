@@ -32,11 +32,7 @@ func ballsize(frame: CGSize) -> CGSize {
 // Frame used for initialization when () constructor needs an arguement
 let DefaultFrame = CGRect(x: 0, y: 0, width: 10, height: 10)
 
-
-var BallImages: [UIImage] = [BlueBall,PinkBall,RedBall,PurpleBall,OrangeBall,GreenBall]
-
 let Clouds = UIImage(named: "Clouds")
-
 
 
 // Gets the available nodes for a set of points that contain counters of radius 'r'
@@ -57,12 +53,16 @@ func getNodes(r: CGFloat,points: [CGPoint]) -> [CGPoint]
 extension Array {
     
     func filterDuplicates(includeElement: (_ lhs:Element, _ rhs:Element) -> Bool) -> [Element]{
+        
+        // Empty array that we'll populate with unique elements.
         var results = [Element]()
         
         forEach { (element) in
+            // Check to see if element is already in the array by removing everything that's not equal to the element.
             let existingElements = results.filter {
                 return includeElement(element, $0)
             }
+            // Append to the results array if it has no matches in our existing array.d
             if existingElements.count == 0 {
                 results.append(element)
             }
@@ -72,10 +72,21 @@ extension Array {
     }
 }
 
+extension Array {
+    
+    func thing()
+    {
+        forEach { (x) in
+            print(x)
+        }
+        
+    }
+    
+}
+
 // Finds the four points (left, right, up and down) that are at distance 'delta' from 'p'
 func boundaryNodes(p: CGPoint,delta: CGFloat) -> [CGPoint] {
 
-    
     let deltaPlusX = CGPoint(x: p.x+delta, y: p.y)
     let deltaMinusX = CGPoint(x: p.x-delta, y: p.y)
     let deltaPlusY = CGPoint(x: p.x, y: p.y+delta)
@@ -268,6 +279,7 @@ func subtractPoints(a: CGPoint,b: CGPoint) -> CGPoint {
 func removeDuplicateNodes(nodes: [CGPoint]) -> [CGPoint] {
     
     
+    
     // Function that gives the criteria for duplicates
     func duplicateCriteria(pointA: CGPoint, pointB: CGPoint) -> Bool
     {
@@ -275,12 +287,15 @@ func removeDuplicateNodes(nodes: [CGPoint]) -> [CGPoint] {
         
         let d = distance(A: pointA, B: pointB)
         
-        return abs(d) < 1.0
+        return abs(d) < 5
         
     }
     
+    let filteredArray = nodes.filterDuplicates(includeElement: {duplicateCriteria(pointA: $0, pointB: $1)})
     
-    return nodes.filterDuplicates(includeElement: {duplicateCriteria(pointA: $0, pointB: $1)})
+    print("NODES REMOVED:",nodes.count-filteredArray.count)
+    
+    return filteredArray
     
     
 }
@@ -292,12 +307,12 @@ func hide(view: UIView)
 }
 
 
-func calculateScore(dT: CGFloat,number: Int,attempts: Int) -> Int {
+func calculateScore(dT: CGFloat,number: Int,penalty: CGFloat) -> Int {
     
     var score: CGFloat = 0
     
     // Adjusted to increase penalty for wrong answer.
-    score = 200/(sqrt(dT + 1 + 1.5*CGFloat(attempts)))
+    score = 200/(sqrt(dT + 1 + 2*CGFloat(penalty)))
 
     
     return Int(score)
@@ -321,16 +336,13 @@ func bouncePoints(points: [CGPoint],center: CGPoint) -> [CGPoint] {
     for point in points {
         
         let length = distance(A: point, B: center)
-        print(length,"This is the length")
-        let vector = subtractPoints(a: point, b: center)
-        print(vector,"This is the vector")
+
+        let vector = subtractPoints(a: point, b: center)  
         
         let bounce: CGFloat = 40
         
         let direction = scalePoints(factor: bounce/(length+1),vector: vector)
-        
-        print(direction,"This is the diredction")
-        
+  
         let newPoint = addPoints(a: direction, b: point)
         
         returnArr.append(newPoint)
@@ -364,7 +376,22 @@ func getMeshCenter(mesh: [CGPoint]) -> CGPoint {
     
 }
 
-
+// CG point is equatable but has not been working consistently. Redefining so that points are considered identical so long as they are less than one pixel apart.
+func compareCGPoints(a: CGPoint,b: CGPoint) ->  Bool {
+    
+    
+    
+    if distance(A: a, B: b) > 1 {
+        return false
+    }
+    else if distance(A: a, B: b) < 1 {
+        return true
+    }
+    else {
+        return false
+    }
+    
+}
 
 
 

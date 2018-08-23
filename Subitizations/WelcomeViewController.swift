@@ -21,10 +21,10 @@ extension CGRect
     
     mutating func styleGoToMarbles(container: CGRect) {
         
-        let w = container.width/4
+        let w = container.width/2
         let h = w/5
         let x = container.width/2 - w/2
-        let y = container.height/4
+        let y = container.height/4 + h
         
         self = CGRect(x: x, y: y, width: w, height: h)
         
@@ -32,10 +32,10 @@ extension CGRect
     
     mutating func styleGoToGame(container: CGRect) {
         
-        let w = container.width/4
+        let w = container.width/2
         let h = w/5
         let x = container.width/2 - w/2
-        let y = container.height/4 + h
+        let y = container.height/4 + 2*h
         
         self = CGRect(x: x, y: y, width: w, height: h)
         
@@ -108,18 +108,18 @@ class WelcomeViewController: UIViewController
         // Marble Button
         view.addSubview(vcWeGoToMarblesBtn)
         vcWeGoToMarblesBtn.frame.styleGoToMarbles(container: thisContainer)
-        vcWeGoToMarblesBtn.styleChalkRect(text: "Marbles")
+        vcWeGoToMarblesBtn.styleChalkRect(text: "Discover")
        
         // Game Button
         view.addSubview(vcWeGoToGameBtn)
         vcWeGoToGameBtn.frame.styleGoToGame(container: thisContainer)
-        vcWeGoToGameBtn.styleChalkRect(text: "Game")
+        vcWeGoToGameBtn.styleChalkRect(text: "Play")
    
-        // Grid Button
+        /* Grid Button
         view.addSubview(vcWeGoToGridBtn)
         vcWeGoToGridBtn.frame.styleGoToGrid(container: thisContainer)
         vcWeGoToGridBtn.styleChalkRect(text: "Grid")
-     
+         */
         
         
         

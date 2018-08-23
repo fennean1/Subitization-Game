@@ -19,7 +19,7 @@ class trophybutton: UIButton {
 
     func updateTrophy(percentage: CGFloat) {
         
-        let newTrophy = trophy(percentage: percentage)
+        let newTrophy = getTrophy(percentage: percentage)
       
         self.setImage(newTrophy, for: .normal)
         

@@ -254,8 +254,7 @@ func swapBall(b: touchableBall)
         //originalCoordinates[indexOfClosest!] = newCenterForClosest
         //originalCoordinates[indexOfMover!] = newMoverCenter
         
-        
-        
+        // O
         newMoverCenter = addPoints(a: numbershapeViewOrigin, b: newMoverCenter)
         newCenterForClosest = addPoints(a: numbershapeViewOrigin, b: newCenterForClosest)
         
@@ -270,7 +269,6 @@ func swapBall(b: touchableBall)
             
             
         })
-        
         
         Balls[indexOfClosest!] = mover
         Balls[indexOfMover!] = closest

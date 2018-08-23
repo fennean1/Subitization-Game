@@ -33,8 +33,8 @@ let PurpleBall = UIImage(named: "PurpleBall")!
 let NoBall = UIImage(named: "NoBall")!
 let SquareButton = UIImage(named: "SquareButton")!
 let PinkButton = UIImage(named: "PinkButton")!
-let WhiteButton = UIImage(named: "WhiteButton")!
-let GlassButton = UIImage(named: "GlassBall")!
+let nextBtn = UIImage(named: "BringNext")!
+// let nextBtn = UIImage(named: "BringNext")!
 
 
 let LittleBlueTrophy = UIImage(named: "LittleBlueTrophy")!
@@ -52,6 +52,7 @@ let lightbluecolor = UIColor(red: 0.1882, green: 0.6745, blue: 1, alpha: 0.3)
 let cellcolor = lightbluecolor.withAlphaComponent(0.2)
 let chalkboardfont = "Chalkboard SE"
 
+let LevelOne =  [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
 
 let purpleBtnImage = UIImage(named: "PurpleThumbPrint")
 let pinkBtnImage = UIImage(named: "PinkThumbPrint")
@@ -67,4 +68,7 @@ let RED = UIColor(red: 0.9373, green: 0.0902, blue: 0.0902, alpha: 1.0)
 let GREEN = UIColor(red: 0.102, green: 0.9176, blue: 0.0902, alpha: 1.0)
 let PURPLE = UIColor(red: 0.7373, green: 0.3098, blue: 0.949, alpha: 1.0)
 let PINK = UIColor(red: 1, green: 0.1176, blue: 0.8824, alpha: 1.0)
+
+
+var BallImages: [UIImage] = [BlueBall,PinkBall,RedBall,PurpleBall,OrangeBall,GreenBall]
 

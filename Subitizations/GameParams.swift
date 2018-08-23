@@ -51,31 +51,31 @@ class player {
 
 
 
-func trophy(percentage: CGFloat) -> UIImage?
+func getTrophy(percentage: CGFloat) -> UIImage?
 {
     print("Getting Trophy...")
     print("This is the percentage:",percentage)
     
-    if percentage < 0.10
+    if percentage < 0.25
     {
         return LittleBlueTrophy
     }
-    else if percentage < 0.30
+    else if percentage < 0.35
     {
        return LittleGreenTrophy
     }
-    else if percentage < 0.50
+    else if percentage < 0.45
     {
         return MedBronzeTrophy
     }
-    else if percentage < 0.70
+    else if percentage < 0.55
     {
         return BigSilverTrophy
     }
-    else if percentage < 0.90 {
+    else if percentage < 0.65 {
         return GoldTrophy
     }
-    else if percentage >= 0.90 {
+    else if percentage >= 0.65 {
         return RainbowTrophy
     }
     else

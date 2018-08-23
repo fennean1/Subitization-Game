@@ -16,8 +16,6 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
     
     // We're not going to deal with anything where the balls array is not size ten and the number we're drawing is greater than ten. If we want to draw numbershapes with values greater than 10 we need nesting
     guard value <= 10, marbles.count == 10 else {
-
-        
         
         print("The size of your array must be 10 and the value you draw must be less than or equal to ten. Your array is ",marbles.count,"and your value is",value)
         
@@ -32,10 +30,8 @@ func drawNumberShape(value: Int,at: CGPoint, marbles: [UIImageView],ballimage: U
     let shapeOffset = CGPoint(x: sizeOfShape.width/2, y: sizeOfShape.height/2)
     
     let combinedOffset = subtractPoints(a: at, b: shapeOffset)
-    
 
     points = points.map({C in addPoints(a: C, b: at)})
-
 
     for (index,ball) in marbles.enumerated() {
         

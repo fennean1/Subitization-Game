@@ -41,19 +41,6 @@ extension UIButton {
 extension CGRect {
     
     
-    mutating func styleScoreLabel(container: CGRect)
-    {
-        
-        let h = container.height/7
-        let w = 0.8*container.width
-        
-        let y = h
-        let x = container.width/2 - w/2
-        
-        self = CGRect(x: x, y: y, width: w, height: h)
-    
-    }
-    
     // Styles a timer label to be displayed in the upper right of the screen.
     mutating func styleTimerLabel(container: CGRect) {
         
@@ -138,37 +125,6 @@ extension CGRect {
     
 }
 
-
-
-
-func getResponseButtonFrames(n: Int,container: CGRect) -> [CGRect]
-{
-    
-    var frames: [CGRect] = []
-    
-    let side: CGFloat = container.width/12
-    
-    let length = side*CGFloat(n)*1.2
-    
-    let startX = container.width/2 - length/2
-    
-    for index in 0...n-1 {
-        
-        
-        let x = 10 + startX + side*CGFloat(index)*1.2
-        let y = container.height - 1.5*side
-        
-        let w = side
-        let h = side
-        
-        frames.append(CGRect(x: x, y: y, width: w, height: h))
-        
-        
-    }
-    
-    return frames
-    
-}
 
 
 

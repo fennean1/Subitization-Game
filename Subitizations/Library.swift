@@ -15,8 +15,6 @@ class modalview: UIView
     let label = UILabel()
     let scene = UIImageView()
     
-    
-    
     var contentview: CGRect
     {
         return self.bounds
@@ -34,7 +32,6 @@ class modalview: UIView
         {
             
             self.layer.shadowPath = UIBezierPath(rect: RectZero).cgPath
-            
             
             UIView.animate(withDuration: 1, animations:
                 {self.frame = start})
@@ -59,10 +56,7 @@ class modalview: UIView
         label.textAlignment = .center
         label.text = messege
         
-        
         scene.image = image
-    
-        
     
         // Starts at CGRectZero before animation
         let endsize = CGSize(width: 3/4*HelpHeight, height: HelpHeight)

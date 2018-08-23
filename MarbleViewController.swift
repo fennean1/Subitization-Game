@@ -64,20 +64,21 @@ func initOriginalCoordinates()
 
 
 
-
+var firstLoad = true
 
 class MarbleViewController: UIViewController {
     
     var Help: helpview!
     
-    
+    var vcMaAddBtn = UIButton()
+    var vcMaSubBtn = UIButton()
     
     
     @IBOutlet weak var HelpButton: UIButton!
     
     var colorPicker = colorpickermarbles()
     
-    
+
     func back(sender: UIButton)
     {
         
@@ -291,11 +292,15 @@ class MarbleViewController: UIViewController {
         
         Balls = initBalls(number: 20, frame: initBallFrame)
         
-        initOriginalCoordinates()
+        if firstLoad {
+            initOriginalCoordinates()
+            firstLoad = false
+        }
         
-        for aBall in Balls
+    
+        for b in Balls
         {
-            view.addSubview(aBall)
+            view.addSubview(b)
         }
         
         

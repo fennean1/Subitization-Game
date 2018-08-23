@@ -404,7 +404,6 @@ class numbershapeview: UIView {
         // MOOOOOOOOOOOOO
         var coordinatesinplay = coordinates.count
         
-        
         let oldBallsInplay = BallsInPlay
         
         print(oldBallsInplay,"oldballs")
@@ -428,6 +427,7 @@ class numbershapeview: UIView {
                     Balls[index].frame.size = CGSize(width: BallDim, height: BallDim)
                     Balls[index].center = newcoordinates[index]
                     
+                    //
                     if index >= oldBallsInplay
                     {
                         print("greater than old balls")

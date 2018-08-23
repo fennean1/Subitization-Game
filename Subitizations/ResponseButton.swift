@@ -15,6 +15,7 @@ class responsebutton: UIButton {
     // Number of balls drawn in this button
     var _n = 0
 
+    // The arraw of marble views that get drawn inside the button.
     var marbleViewArray: [UIImageView] = []
     
     func drawNumber(n: Int,image: UIImage) {
@@ -36,9 +37,10 @@ class responsebutton: UIButton {
         super.init(frame: frame)
     
 
+
         self.frame = frame
         
-        
+        // Initialize the marble view frame.
         for _ in 1...10
         {
             let newView = UIImageView()
@@ -48,9 +50,7 @@ class responsebutton: UIButton {
             marbleViewArray.append(newView)
             
         }
-        
-        
-        print("resetting marbles before we animate to new thing")
+    
         for marble in marbleViewArray {
             
             marble.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
